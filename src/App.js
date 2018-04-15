@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        hello world! todo:
+        <ol>
+          <li> sätt upp actions, reducers etc (kolla i weather-forecast-error)</li>
+          <li>kolla status i browsern ofta, så samma error kan lösas om det uppstår!</li>
+          <li> have fuuuuuun</li>
+        </ol>
       </div>
     );
   }
