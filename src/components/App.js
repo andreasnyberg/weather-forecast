@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
-import Weather from './components/weather';
+import '../App.css';
+import Weather from './weather';
+import Footer from './footer';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        hello world!
         <Weather />
+        <Footer />
       </div>
     );
   }

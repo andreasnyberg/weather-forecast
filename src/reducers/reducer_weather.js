@@ -4,9 +4,9 @@ import {
   FETCH_WEATHER_OWM,
   SET_DATA_SOURCE_FILTER,
   DataSourceFilters
-} from '../actions/actions';
+} from '../actions';
 
-const { SHOW_ALL } = DataSourceFilters; // hmm , kolla på redux docsen?!
+const { SHOW_ALL } = DataSourceFilters;
 
 export function dataSourceFilter(state = SHOW_ALL, action) {
   switch (action.type) {

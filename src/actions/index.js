@@ -16,8 +16,11 @@ const lat = '59.3293'; // stockholm
 const lon = '18.0686'; // stockholm
 
 // action creators
-export function setDataSourceFilter(filter) {
-  return { type: SET_DATA_SOURCE_FILTER, filter }
+export function setDataSourceFilter(filter) {  
+  return { 
+    type: SET_DATA_SOURCE_FILTER, 
+    filter
+  }
 }
 
 export function fetchWeatherSmhi() {

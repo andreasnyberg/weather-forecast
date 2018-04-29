@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { fetchWeatherSmhi, fetchWeatherOwm } from '../actions/actions';
+import { fetchWeatherSmhi, fetchWeatherOwm } from '../actions';
 //import WeatherList from './weather_list';
 
 class Weather extends Component {
@@ -27,7 +27,7 @@ class Weather extends Component {
   render() {    
     return (
       <div>
-        
+        weather
       </div>
     );
   }

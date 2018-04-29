@@ -7,3 +7,29 @@ body {
 .App {
   text-align: center;
 }
+
+/* // button container */
+.source-buttons {
+  display: flex;
+  height: 500px;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.btn-src {
+  outline: 1px solid pink;
+
+  margin: 0 30px;
+  padding: 30px;
+  position: relative;
+
+
+}
+
+.btn-src:active {
+  background: #eee;
+}
+
+.btn-src.active {
+  outline: 2px solid lime;
+}
