@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import '../App.css';
-import Weather from './weather';
+import VisibleWeather from '../containers/visible_weather';
 import Footer from './footer';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Weather />
+        <VisibleWeather />
         <Footer />
       </div>
     );

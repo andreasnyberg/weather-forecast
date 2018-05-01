@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { format } from 'date-fns'
 
-import { fetchWeatherSmhi, fetchWeatherOwm } from '../actions';
 //import WeatherList from './weather_list';
 
 class Weather extends Component {
@@ -21,10 +19,22 @@ class Weather extends Component {
   // todo: bästa stället att skicka iväg requests?
   componentDidMount() {
     this.props.fetchWeatherSmhi();
-    this.props.fetchWeatherOwm();
+    // this.props.fetchWeatherOwm();
   }
 
   render() {    
+    if (this.props.weatherSmhi.length) {
+      
+      const data = this.props.weatherSmhi[0].timeSeries; 
+      const weekdays = data.map(d => {
+        console.log(format(new Date(d.validTime), 'dddd'));
+
+        //return dateFns.format(new Date(d.validTime), 'dddd')
+        
+      });
+
+    }
+    
     return (
       <div>
         weather
@@ -33,21 +43,4 @@ class Weather extends Component {
   }
 }
 
-// TODO mapStateToProps ska vi nog inte ens ha i denna fil.
-function mapStateToProps(state) {
-  if (state.weatherOwm[0]) {
-    console.log(state.weatherOwm[0].list);
-  }
-
-  if (state.weatherSmhi[0]) {
-    console.log(state.weatherSmhi[0].timeSeries);
-  }
-  
-  return state;
-}
-
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ fetchWeatherSmhi, fetchWeatherOwm }, dispatch);
-}
-//export default connect(null, mapDispatchToProps)(Weather);
-export default connect(mapStateToProps, mapDispatchToProps)(Weather);
+export default Weather;
