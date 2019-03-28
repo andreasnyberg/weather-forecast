@@ -1,10 +1,10 @@
 
 import {
-  FETCH_WEATHER_SMHI,
-  FETCH_WEATHER_OWM,
+  FETCH_DATA_SMHI,
+  FETCH_DATA_OWM,
   SET_DATA_SOURCE_FILTER,
   DataSourceFilters
-} from '../actions';
+} from '../actions/types';
 
 const { SHOW_ALL } = DataSourceFilters;
 
@@ -17,18 +17,18 @@ export function dataSourceFilter(state = SHOW_ALL, action) {
   }
 }
 
-export function weatherSmhi(state = [], action) {		
+export function weatherSmhi(state = [], action) {
   switch(action.type) {
-		case FETCH_WEATHER_SMHI:
+    case FETCH_DATA_SMHI:
 			return [ action.payload.data, ...state ];
 		default:
       return state
 	}
 }
 
-export function weatherOwm(state = [], action) {		
+export function weatherOwm(state = [], action) {
   switch(action.type) {
-		case FETCH_WEATHER_OWM:
+		case FETCH_DATA_OWM:
 			return [ action.payload.data, ...state ];
 		default:
       return state

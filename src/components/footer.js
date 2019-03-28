@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataSourceFilters } from '../actions';
+import { DataSourceFilters } from '../actions/types';
 import FilterSourceButton from '../containers/filter_source_button';
 
 const Footer = () => (
