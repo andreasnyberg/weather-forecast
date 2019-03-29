@@ -2,14 +2,12 @@ import { combineReducers } from 'redux';
 
 import {
   dataSourceFilter,
-  weatherSmhi,
-  weatherOwm
+  weatherData
 } from './reducer_weather';
 
 const rootReducer = combineReducers({
   dataSourceFilter,
-  weatherSmhi,
-  weatherOwm
+  weatherData
 });
 
 export default rootReducer;

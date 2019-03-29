@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { format } from 'date-fns'
-
-//import WeatherList from './weather_list';
+import WeatherRow from './WeatherRow';
 
 class Weather extends Component {
   constructor(props) {
@@ -11,23 +9,19 @@ class Weather extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchWeatherSmhi();
+    //this.props.fetchWeatherSmhi();
     //this.props.fetchWeatherOwm();
+
+    // TODO execute this when all the other sources are succeded & massaged.
+    this.props.combineAllData();
   }
 
   render() {
-    if (this.props.weatherSmhi.length) {
-      const data = this.props.weatherSmhi[0].timeSeries;
-      const weekdays = data.map(d => {
-        console.log(format(new Date(d.validTime), 'dddd'));
-
-        //return dateFns.format(new Date(d.validTime), 'dddd')
-      });
-    }
-
     return (
       <div>
-        weather
+        {/* { this.testData.map(item => <WeatherRow data={item} />) } */}
+
+        hello world
       </div>
     );
   }

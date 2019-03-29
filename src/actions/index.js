@@ -3,6 +3,7 @@ import {
   FETCH_DATA_OWM,
   MASSAGE_DATA_SMHI,
   MASSAGE_DATA_OWM,
+  COMBINE_ALL_DATA,
   SET_DATA_SOURCE_FILTER,
   API,
   API_ERROR_SMHI,
@@ -77,5 +78,11 @@ function apiAction({
       label,
       headersOverride
     }
+  };
+}
+
+export function combineAllData() {
+  return {
+    type: COMBINE_ALL_DATA
   };
 }

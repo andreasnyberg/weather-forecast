@@ -3,6 +3,7 @@ export const FETCH_DATA_SMHI = 'FETCH_DATA_SMHI';
 export const FETCH_DATA_OWM = 'FETCH_DATA_OWM';
 export const MASSAGE_DATA_SMHI = 'MASSAGE_DATA_SMHI';
 export const MASSAGE_DATA_OWM = 'MASSAGE_DATA_OWM';
+export const COMBINE_ALL_DATA = 'COMBINE_ALL_DATA';
 export const SET_DATA_SOURCE_FILTER = 'SET_DATA_SOURCE_FILTER';
 
 export const API = 'API';
