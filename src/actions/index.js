@@ -22,7 +22,7 @@ export function setDataSourceFilter(filter) {
 
 export function fetchWeatherSmhi() {
   return apiAction({
-    url: `https://opendata-ddfsdfownload-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`,
+    url: `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`,
     onSuccess: massageDataSmhi,
     onFailure: () => ({ type: API_ERROR_SMHI }),
     label: FETCH_DATA_SMHI
