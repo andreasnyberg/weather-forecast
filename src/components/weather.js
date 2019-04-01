@@ -10,11 +10,11 @@ class Weather extends Component {
   }
 
   componentDidMount() {
-    //this.props.fetchWeatherSmhi();
+    this.props.fetchWeatherSmhi();
     //this.props.fetchWeatherOwm();
 
     // TODO execute this when all the other sources are succeded & massaged.
-    this.props.combineAllData();
+    //this.props.combineAllData();
   }
 
   filterData() {
@@ -38,6 +38,13 @@ class Weather extends Component {
 
   render() {
     const data = this.filterData();
+
+    if (!data) {
+      return (
+        <div>Loading...</div>
+      );
+    }
+
     const rows = data.map((item, i) => <WeatherRow data={item} key={i} />);
 
     return (

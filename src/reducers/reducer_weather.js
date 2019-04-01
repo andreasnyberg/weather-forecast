@@ -7,6 +7,7 @@ import {
   SET_DATA_SOURCE_FILTER,
   DataSourceFilters
 } from '../actions/types';
+import massageDataSmhi from '../helpers/massageDataSmhi';
 import combineData from '../helpers/combineData';
 
 const { SHOW_ALL } = DataSourceFilters;
@@ -71,8 +72,8 @@ const initTestStateOwm = [
   },
   {
     day: "tisdag",
-    tempLowest: 5,
-    tempHighest: 13,
+    tempLowest: 102,
+    tempHighest: 106,
     hours: [
       {
         hour: "00:00",
@@ -87,7 +88,7 @@ const initTestStateOwm = [
 ]
 
 const initialState = {
-  smhi: initTestStateSmhi,
+  smhi: [],
   owm: initTestStateOwm,
   combo: []
 }
@@ -97,7 +98,7 @@ export function weatherData(state = initialState, action) {
     case MASSAGE_DATA_SMHI:
 			return {
         ...state,
-        smhi: action.payload.data
+        smhi: massageDataSmhi(action.payload)
       };
     case MASSAGE_DATA_OWM:
 			return {

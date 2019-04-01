@@ -1,9 +1,6 @@
 import React from 'react';
 
 const WeatherRow = (props) => {
-  console.log('rowHour props: ', props);
-
-
   return (
     <div className="row row--hour">
       <div className="item">

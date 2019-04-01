@@ -2,8 +2,6 @@ import React from 'react';
 import WeatherRowHour from './WeatherRowHour';
 
 const WeatherRow = (props) => {
-  console.log('row props: ', props);
-
   const hours = props.data.hours.map((item, i) => <WeatherRowHour data={item} key={i} />);
 
   return (
