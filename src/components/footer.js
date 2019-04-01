@@ -1,20 +1,20 @@
 import React from 'react';
 import { DataSourceFilters } from '../actions/types';
-import FilterSourceButton from '../containers/filter_source_button';
+import SourceButtonContainer from '../containers/SourceButtonContainer';
 
 const Footer = () => (
   <footer className="source-buttons">
-      <FilterSourceButton filter={DataSourceFilters.SHOW_ALL}>
+      <SourceButtonContainer filter={DataSourceFilters.SHOW_ALL}>
         Kombo
-      </FilterSourceButton>
+      </SourceButtonContainer>
 
-      <FilterSourceButton filter={DataSourceFilters.SHOW_SMHI}>
+      <SourceButtonContainer filter={DataSourceFilters.SHOW_SMHI}>
         SMHI
-      </FilterSourceButton>
+      </SourceButtonContainer>
 
-      <FilterSourceButton filter={DataSourceFilters.SHOW_OWM}>
+      <SourceButtonContainer filter={DataSourceFilters.SHOW_OWM}>
         OWM
-      </FilterSourceButton>
+      </SourceButtonContainer>
   </footer>
 );
 

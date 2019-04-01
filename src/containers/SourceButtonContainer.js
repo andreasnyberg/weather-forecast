@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { setDataSourceFilter } from '../actions';
-import SourceButton from '../components/source_button';
+import SourceButton from '../components/SourceButton';
 
 const mapStateToProps = (state, ownProps) => ({
   active: ownProps.filter === state.dataSourceFilter

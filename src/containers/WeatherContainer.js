@@ -6,7 +6,7 @@ import {
   combineAllData
 } from '../actions';
 
-import Weather from '../components/weather';
+import Weather from '../components/Weather';
 
 function mapStateToProps(state) {
   return state;

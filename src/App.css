@@ -29,8 +29,6 @@ body {
   margin: 0 30px;
   padding: 30px;
   position: relative;
-
-
 }
 
 .btn-src:active {
@@ -43,19 +41,31 @@ body {
 
 .row {
   display: flex;
-  margin-bottom: 15px;
+}
+
+.row--day {
+  margin-top: 15px;
 }
 
 .item {
   background: #fff;
   border-bottom: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 5px;
+  outline: 1px solid #ccc;
+  height: 30px;
+  width: 100%;
 }
 
 .item p {
   font-size: 18px;
-  font-weight: bold;
   margin: 0;
+}
+
+.row--day p {
+  font-weight: bold;
 }
 
 .bold {
@@ -63,18 +73,5 @@ body {
   margin-left: 12px;
 }
 
-/* ****************** LAYOUT ****************** */
-.row {
-  display: flex;
-  display: flex;
-}
 
-.item {
-  outline: 1px solid #ccc;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
 

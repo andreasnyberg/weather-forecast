@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
-import VisibleWeather from '../containers/visible_weather';
-import Footer from './footer';
+import VisibleWeather from '../containers/WeatherContainer';
+import Footer from './Footer';
 
 class App extends Component {
   render() {

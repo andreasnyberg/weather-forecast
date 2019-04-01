@@ -24,6 +24,7 @@ const initTestStateSmhi = [
   {
     day: "måndag",
     tempLowest: 1,
+    tempHighest: 9,
     hours: [
       {
         hour: "00:00",
@@ -38,6 +39,7 @@ const initTestStateSmhi = [
   {
     day: "tisdag",
     tempLowest: 10,
+    tempHighest: 15,
     hours: [
       {
         hour: "00:00",
@@ -55,6 +57,7 @@ const initTestStateOwm = [
   {
     day: "måndag",
     tempLowest: 100,
+    tempHighest: 109,
     hours: [
       {
         hour: "00:00",
@@ -69,6 +72,7 @@ const initTestStateOwm = [
   {
     day: "tisdag",
     tempLowest: 5,
+    tempHighest: 13,
     hours: [
       {
         hour: "00:00",
@@ -83,9 +87,9 @@ const initTestStateOwm = [
 ]
 
 const initialState = {
-  weatherSmhi: initTestStateSmhi,
-  weatherOwm: initTestStateOwm,
-  weatherCombo: []
+  smhi: initTestStateSmhi,
+  owm: initTestStateOwm,
+  combo: []
 }
 
 export function weatherData(state = initialState, action) {
@@ -93,17 +97,17 @@ export function weatherData(state = initialState, action) {
     case MASSAGE_DATA_SMHI:
 			return {
         ...state,
-        weatherSmhi: action.payload.data
+        smhi: action.payload.data
       };
     case MASSAGE_DATA_OWM:
 			return {
         ...state,
-        weatherOwm: action.payload.data
+        owm: action.payload.data
       };
     case COMBINE_ALL_DATA:
 			return {
         ...state,
-        weatherCombo: combineData(state.weatherSmhi, state.weatherOwm)
+        combo: combineData(state.smhi, state.owm)
       };
 		default:
       return state
