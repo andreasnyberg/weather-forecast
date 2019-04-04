@@ -1,10 +1,4 @@
-const getAverage = (values) => {
-  const sum = values.reduce((total, currentValue) => (
-    total + currentValue
-  ), 0);
-
-  return Math.round(sum / values.length);
-}
+import { getAverage } from './calculate';
 
 const combineData = (dataSmhi, dataOwm) => {
   return dataSmhi.map(item => {
