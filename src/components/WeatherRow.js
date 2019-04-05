@@ -12,11 +12,11 @@ const WeatherRow = (props) => {
         </div>
 
         <div className="item">
-          <p>{props.data.tempLowest}</p>
+          <p>{props.data.tempMin}</p>
         </div>
 
         <div className="item">
-          <p>{props.data.tempHighest}</p>
+          <p>{props.data.tempMax}</p>
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import { getAverage } from './calculate';
+import { getAverage } from './misc';
 
 const combineData = (dataSmhi, dataOwm) => {
   return dataSmhi.map(item => {
@@ -6,8 +6,8 @@ const combineData = (dataSmhi, dataOwm) => {
 
     return {
       day: item.day,
-      tempLowest: getAverage([item.tempLowest, owmDay.tempLowest]),
-      tempHighest: getAverage([item.tempHighest, owmDay.tempHighest]),
+      tempMin: getAverage([item.tempMin, owmDay.tempMin]),
+      tempMax: getAverage([item.tempMax, owmDay.tempMax]),
       hours: item.hours.map(itemHour => {
         const tempSmhi = itemHour.temp;
         const tempOwm = owmDay.hours.find(y => y.hour === itemHour.hour).temp;

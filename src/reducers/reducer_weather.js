@@ -24,8 +24,8 @@ export function dataSourceFilter(state = SHOW_ALL, action) {
 const initTestStateSmhi = [
   {
     day: "måndag",
-    tempLowest: 1,
-    tempHighest: 9,
+    tempMin: 1,
+    tempMax: 9,
     hours: [
       {
         hour: "00:00",
@@ -39,8 +39,8 @@ const initTestStateSmhi = [
   },
   {
     day: "tisdag",
-    tempLowest: 10,
-    tempHighest: 15,
+    tempMin: 10,
+    tempMax: 15,
     hours: [
       {
         hour: "00:00",
@@ -57,8 +57,8 @@ const initTestStateSmhi = [
 const initTestStateOwm = [
   {
     day: "måndag",
-    tempLowest: 100,
-    tempHighest: 109,
+    tempMin: 100,
+    tempMax: 109,
     hours: [
       {
         hour: "00:00",
@@ -72,8 +72,8 @@ const initTestStateOwm = [
   },
   {
     day: "tisdag",
-    tempLowest: 102,
-    tempHighest: 106,
+    tempMin: 102,
+    tempMax: 106,
     hours: [
       {
         hour: "00:00",
