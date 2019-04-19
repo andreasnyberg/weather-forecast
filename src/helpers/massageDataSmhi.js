@@ -1,12 +1,12 @@
-import { eachDay, addDays, isSameDay, format, getHours } from 'date-fns';
+import { eachDay, addDays, isSameDay } from 'date-fns';
 import { getAverage, getSum, isAwakeTime, roundAndValidate } from './misc';
 
 const massageDataSmhi = (data) => {
   const today = new Date();
   const sevenDaysFromToday = eachDay(today, addDays(today, 7));
 
-  const massagedData = sevenDaysFromToday.map(currentDay => {
-    const todayData = data.timeSeries.filter(item => isSameDay(currentDay, item.validTime));
+  const massagedData = sevenDaysFromToday.map(currentDate => {
+    const todayData = data.timeSeries.filter(item => isSameDay(currentDate, item.validTime));
 
     // ********** TEMPERATURE **********
     const temps = todayData
@@ -32,7 +32,7 @@ const massageDataSmhi = (data) => {
       const windspeed = currentHour.parameters.find(item => item.name === 'ws').values[0];
 
       return {
-        hour: format(currentHour.validTime, 'HH:mm'),
+        hour: currentHour.validTime,
         temp: roundAndValidate(temp),
         rainfall,
         windspeed: Math.round(windspeed)
@@ -40,7 +40,7 @@ const massageDataSmhi = (data) => {
     });
 
     return {
-      day: format(currentDay, 'dddd'),
+      date: currentDate,
       tempMin: roundAndValidate(tempMin),
       tempMax: roundAndValidate(tempMax),
       rainfall: getSum(rainfalls),

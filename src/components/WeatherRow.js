@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { format } from 'date-fns';
+import svLocale from 'date-fns/locale/sv';
 import WeatherRowHour from './WeatherRowHour';
 
 class WeatherRow extends Component {
@@ -22,20 +24,40 @@ class WeatherRow extends Component {
     return this.props.data.hours.map((item, i) => <WeatherRowHour data={item} key={i} />);
   }
 
-  render() {
+  render() {    
+    const {
+      date,
+      tempMin,
+      tempMax,
+      rainfall,
+      windspeed
+    } = this.props.data;
+    
+    const dayString = format(date, 'ddd', { locale: svLocale });
+    const dateString = format(date, 'D MMM', { locale: svLocale });
+
     return (
       <div>
         <div className="row row--day" onClick={this.handleRowClick}>
           <div className="item">
-            <p>{this.props.data.day}</p>
+            {dayString} <br /> 
+            {dateString}
           </div>
 
           <div className="item">
-            <p>{this.props.data.tempMin}</p>
+            <p>{tempMin}</p>
           </div>
 
           <div className="item">
-            <p>{this.props.data.tempMax}</p>
+            <p>{tempMax}</p>
+          </div>
+          
+          <div className="item">
+            <p>{rainfall}</p>
+          </div>
+          
+          <div className="item">
+            <p>{windspeed}</p>
           </div>
         </div>
 
