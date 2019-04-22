@@ -8,6 +8,7 @@ import {
   DataSourceFilters
 } from '../actions/types';
 import massageDataSmhi from '../helpers/massageDataSmhi';
+import massageDataOwm from '../helpers/massageDataOwm';
 import combineData from '../helpers/combineData';
 
 const { SHOW_ALL } = DataSourceFilters;
@@ -103,7 +104,7 @@ export function weatherData(state = initialState, action) {
     case MASSAGE_DATA_OWM:
 			return {
         ...state,
-        owm: action.payload.data
+        owm: massageDataOwm(action.payload)
       };
     case COMBINE_ALL_DATA:
 			return {
