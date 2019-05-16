@@ -22,75 +22,9 @@ export function dataSourceFilter(state = SHOW_ALL, action) {
   }
 }
 
-const initTestStateSmhi = [
-  {
-    day: "måndag",
-    tempMin: 1,
-    tempMax: 9,
-    hours: [
-      {
-        hour: "00:00",
-        temp: 4,
-      },
-      {
-        hour: "01:00",
-        temp: 22,
-      }
-    ]
-  },
-  {
-    day: "tisdag",
-    tempMin: 10,
-    tempMax: 15,
-    hours: [
-      {
-        hour: "00:00",
-        temp: 4,
-      },
-      {
-        hour: "01:00",
-        temp: 22,
-      }
-    ]
-  }
-]
-
-const initTestStateOwm = [
-  {
-    day: "måndag",
-    tempMin: 100,
-    tempMax: 109,
-    hours: [
-      {
-        hour: "00:00",
-        temp: 102,
-      },
-      {
-        hour: "01:00",
-        temp: 111,
-      }
-    ]
-  },
-  {
-    day: "tisdag",
-    tempMin: 102,
-    tempMax: 106,
-    hours: [
-      {
-        hour: "00:00",
-        temp: 103,
-      },
-      {
-        hour: "01:00",
-        temp: 100,
-      }
-    ]
-  }
-]
-
 const initialState = {
   smhi: [],
-  owm: initTestStateOwm,
+  owm: [],
   combo: []
 }
 

@@ -33,6 +33,8 @@ const apiMiddleware = ({ dispatch }) => next => action => {
       dispatch(onSuccess(data));
     })
     .catch(error => {
+      console.log(error);
+
       dispatch(apiError(error));
       dispatch(onFailure(error));
     })

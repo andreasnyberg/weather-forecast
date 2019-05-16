@@ -25,4 +25,8 @@ export const isAwakeTime = (date) => (
   getHours(date) >= 7 && getHours(date) <= 23
 );
 
+export const isObjectEmpty = (obj) => {
+    return Object.entries(obj).length === 0 && obj.constructor === Object;
+}
+
 

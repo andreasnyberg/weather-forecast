@@ -30,9 +30,9 @@ export function fetchWeatherSmhi() {
   });
 }
 
-export function fetchWeatherOwm() {  
+export function fetchWeatherOwm() {
 	const API_KEY_OWM = '2e9a81cad4d1213fac1d8c5baa8ef2c5';
-  const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=${API_KEY_OWM}`;
+  const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=${API_KEY_OWM}&units=metric`;
 
   return apiAction({
     url,
