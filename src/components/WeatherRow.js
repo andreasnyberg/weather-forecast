@@ -24,7 +24,7 @@ class WeatherRow extends Component {
     return this.props.data.hours.map((item, i) => <WeatherRowHour data={item} key={i} />);
   }
 
-  render() {    
+  render() {
     const {
       date,
       tempMin,
@@ -32,31 +32,28 @@ class WeatherRow extends Component {
       rainfall,
       windspeed
     } = this.props.data;
-    
+
     const dayString = format(date, 'ddd', { locale: svLocale });
     const dateString = format(date, 'D MMM', { locale: svLocale });
 
     return (
       <div>
         <div className="row row--day" onClick={this.handleRowClick}>
-          <div className="item">
-            {dayString} <br /> 
-            {dateString}
+          <div className="item item--day">
+            <p className="weekday">{dayString}</p>
+            <p className="date">{dateString}</p>
           </div>
 
-          <div className="item">
-            <p>{tempMin}</p>
+          <div className="item item--temp">
+            <p className="temp--max">{tempMax}</p>
+            <p className="temp--min">{tempMin}</p>
           </div>
 
-          <div className="item">
-            <p>{tempMax}</p>
-          </div>
-          
-          <div className="item">
+          <div className="item item--rainfall">
             <p>{rainfall}</p>
           </div>
-          
-          <div className="item">
+
+          <div className="item item--windspeed">
             <p>{windspeed}</p>
           </div>
         </div>

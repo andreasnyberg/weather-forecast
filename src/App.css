@@ -59,6 +59,19 @@ body {
   width: 100%;
 }
 
+.item--day {
+  flex-direction: column;
+  align-items: start;
+}
+
+.item--day p {
+  padding-left: 8px;
+}
+
+.item--day .weekday {
+  text-transform: uppercase;
+}
+
 .item p {
   font-size: 18px;
   margin: 0;

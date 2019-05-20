@@ -14,7 +14,7 @@ class Weather extends Component {
     this.props.fetchWeatherOwm();
 
     // TODO execute this when all the other sources are succeded & massaged.
-    //this.props.combineAllData();
+    this.props.combineAllData();
   }
 
   filterData() {
