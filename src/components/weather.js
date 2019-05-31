@@ -12,24 +12,30 @@ class Weather extends Component {
   componentDidMount() {
     this.props.fetchWeatherSmhi();
     this.props.fetchWeatherOwm();
+  }
 
-    // TODO execute this when all the other sources are succeded & massaged.
-    this.props.combineAllData();
+  componentWillReceiveProps(nextProps) {
+    const { smhi, owm, combo } = nextProps.weatherData;
+
+    if (!combo.length && (smhi.length && owm.length)) {
+      this.props.combineAllData();
+    }
   }
 
   filterData() {
     const { SHOW_ALL, SHOW_SMHI, SHOW_OWM } = DataSourceFilters;
-    const { dataSourceFilter, weatherData } = this.props;
+    const { dataSourceFilter } = this.props;
+    const { smhi, owm, combo } = this.props.weatherData;
 
     switch (dataSourceFilter) {
       case SHOW_ALL:
-        return weatherData.combo;
+        return combo;
 
       case SHOW_SMHI:
-        return weatherData.smhi;
+        return smhi;
 
       case SHOW_OWM:
-        return weatherData.owm;
+        return owm;
 
       default:
         throw new Error('Unknown filter: ' + dataSourceFilter);
@@ -37,15 +43,15 @@ class Weather extends Component {
   }
 
   render() {
-    const data = this.filterData();
+    const dataFiltered = this.filterData();
 
-    if (!data) {
+    if (!dataFiltered) {
       return (
         <div>Loading...</div>
       );
     }
 
-    const rows = data.map((item, i) => <WeatherRow data={item} key={i} />);
+    const rows = dataFiltered.map((item, i) => <WeatherRow data={item} key={i} />);
 
     return (
       <div>
