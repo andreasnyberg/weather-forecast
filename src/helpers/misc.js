@@ -9,16 +9,29 @@ export const roundAndValidate = (value) => {
   return isMinusZero(valueRounded) ? 0 : valueRounded;
 }
 
-export const getAverage = (values) => {
-  const sum = values.reduce(reducer);
+export const roundToOneDecimal = (value) => (
+  Math.round(value * 10) / 10
+);
 
-  return Math.round(sum / values.length);
+export const getAverage = (values, roundDefault = true) => {
+  const valuesFilterered = values.filter(value => typeof value !== 'undefined');
+  const sum = valuesFilterered.reduce(reducer);
+  const average = sum / valuesFilterered.length;
+
+  return roundDefault ? Math.round(average) : roundToOneDecimal(average);
+}
+
+export const getAverageNoRound = (values) => {
+  const sum = values.reduce(reducer);
+  const average = sum / values.length;
+
+  return average;
 }
 
 export const getSum = (values) => {
   const sum = values.reduce(reducer);
 
-  return Math.round(sum * 10) / 10;
+  return roundToOneDecimal(sum);
 }
 
 export const isAwakeTime = (date) => (
@@ -26,7 +39,5 @@ export const isAwakeTime = (date) => (
 );
 
 export const isObjectEmpty = (obj) => {
-    return Object.entries(obj).length === 0 && obj.constructor === Object;
+  return Object.entries(obj).length === 0 && obj.constructor === Object;
 }
-
-
