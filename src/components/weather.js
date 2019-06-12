@@ -56,12 +56,11 @@ class Weather extends Component {
     return (
       <div>
         <div className="row row--day">
-          <div className="item">Dag</div>
-          {/* <div className="item">Väder-ikon</div> */}
-          <div className="item">Temperatur (min)</div>
-          <div className="item">Temperatur (max)</div>
-          <div className="item">Nederbörd</div>
-          <div className="item">Vind</div>
+          <div className="item item--day">Dag</div>
+          <div className="item item--icon">Väder</div>
+          <div className="item item--temp">Temperatur</div>
+          <div className="item item--rainfall">Nederbörd</div>
+          <div className="item item--windspeed">Vind</div>
         </div>
 
         { rows }

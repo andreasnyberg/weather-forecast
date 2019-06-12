@@ -17,6 +17,8 @@ const WeatherRow = (props) => {
         <p>{hourString}</p>
       </div>
 
+      <div className="item item--icon"></div>
+
       <div className="item item--temp">
         <p>{temp}</p>
       </div>

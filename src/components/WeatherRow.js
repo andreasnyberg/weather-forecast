@@ -44,6 +44,8 @@ class WeatherRow extends Component {
             <p className="date">{dateString}</p>
           </div>
 
+          <div className="item item--icon"></div>
+
           <div className="item item--temp">
             <p className="temp--max">{tempMax}</p>
             <p className="temp--min">{tempMin}</p>
