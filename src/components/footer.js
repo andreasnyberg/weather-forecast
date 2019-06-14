@@ -3,7 +3,8 @@ import { DataSourceFilters } from '../actions/types';
 import SourceButtonContainer from '../containers/SourceButtonContainer';
 
 const Footer = () => (
-  <footer className="source-buttons">
+  <footer className="footer">
+    <div className="source-buttons">
       <SourceButtonContainer filter={DataSourceFilters.SHOW_ALL}>
         Kombo
       </SourceButtonContainer>
@@ -15,6 +16,7 @@ const Footer = () => (
       <SourceButtonContainer filter={DataSourceFilters.SHOW_OWM}>
         OWM
       </SourceButtonContainer>
+    </div>
   </footer>
 );
 

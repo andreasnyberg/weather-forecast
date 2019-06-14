@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { format } from 'date-fns';
 import svLocale from 'date-fns/locale/sv';
 import WeatherRowHour from './WeatherRowHour';
+import { renderRainfallString } from '../helpers/misc';
 
 class WeatherRow extends Component {
   constructor(props) {
@@ -35,29 +36,25 @@ class WeatherRow extends Component {
 
     const dayString = format(date, 'ddd', { locale: svLocale });
     const dateString = format(date, 'D MMM', { locale: svLocale });
+    const rainfallString = renderRainfallString(rainfall);
 
     return (
       <div>
         <div className="row row--day" onClick={this.handleRowClick}>
           <div className="item item--day">
-            <p className="weekday">{dayString}</p>
-            <p className="date">{dateString}</p>
+            <div className="weekday">{dayString}</div>
+            <div className="date">{dateString}</div>
           </div>
 
           <div className="item item--icon"></div>
 
           <div className="item item--temp">
-            <p className="temp--max">{tempMax}</p>
-            <p className="temp--min">{tempMin}</p>
+            <div className="temp--max">{tempMax}&#176;</div>
+            <div className="temp--min">{tempMin}&#176;</div>
           </div>
 
-          <div className="item item--rainfall">
-            <p>{rainfall}</p>
-          </div>
-
-          <div className="item item--windspeed">
-            <p>{windspeed}</p>
-          </div>
+          <div className="item item--rainfall">{rainfallString}</div>
+          <div className="item item--windspeed">{windspeed}  <span className="smaller">m/s</span></div>
         </div>
 
         {this.state.isOpen &&

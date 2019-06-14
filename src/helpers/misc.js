@@ -41,3 +41,19 @@ export const isAwakeTime = (date) => (
 export const isObjectEmpty = (obj) => {
   return Object.entries(obj).length === 0 && obj.constructor === Object;
 }
+
+export const renderRainfallString = (value) => {
+  if (value == null) {
+    return '-';
+  } else if (value === 0) {
+    return 'Uppehåll';
+  } else if (value < 0.2) {
+    return '< 0,2 mm';
+  } else if (value >= 0.2 && value < 1) {
+    return '0,2 - 1 mm';
+  } else if (value >= 1 && value <= 2) {
+    return '1 - 2 mm';
+  } else {
+    return '> 2 mm';
+  }
+}

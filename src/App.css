@@ -1,84 +1,163 @@
+:root {
+  --container-width: 55rem;
+  --border-color: #eaeaea;
+  --label-height: 4rem;
+}
+
+html { font-size: 62.5%; }
+
+@media screen and (min-width: 768px) { html { font-size: 65%; } }
+@media screen and (min-width: 992px) { html { font-size: 70%; } }
+
 body {
+  color: #333;
+  font-size: 1.8rem;
   margin: 0;
   padding: 0;
   font-family: 'Work Sans', sans-serif;
 }
 
 .App {
-  max-width: 550px;
-  background: #efefef;
-  padding: 20px;
-  min-height: 300px;
-  margin: auto;
+  background-color: #fff;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  max-width: var(--container-width);
+  margin: 0 auto 20rem;
+  padding-top: var(--label-height);
   position: relative;
-  top: 60px;
   text-align: center;
 }
 
-/* // button container */
-.source-buttons {
-  display: flex;
-  height: 500px;
-  align-items: flex-end;
-  justify-content: center;
-}
 
-.btn-src {
-  outline: 1px solid pink;
-
-  margin: 0 30px;
-  padding: 30px;
-  position: relative;
-}
-
-.btn-src:active {
-  background: #eee;
-}
-
-.btn-src.active {
-  outline: 2px solid lime;
-}
-
+/******************** ROWS ********************/
 .row {
+  border-bottom: 1px solid var(--border-color);
   display: flex;
-}
-
-.row--day {
-  margin-top: 15px;
-}
-
-.item {
-  background: #fff;
-  border-bottom: 1px solid #fff;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 5px;
-  outline: 1px solid #ccc;
-  height: 30px;
+  height: 6rem;
+}
+
+.row--labels {
+  background-color: #ddd;
+  color: #888;
+  font-size: 1.4rem;
+  height: var(--label-height);
+  position: fixed;
+  top: 0;
+  max-width: var(--container-width);
+  width: 100%;
+}
+
+.row--hour {
+  background-color: #f3f3f3;
+  height: 4rem;
+}
+
+.row--hour:not(:last-child) {
+  border-color: #fff;
+}
+
+/******************** ITEMS ********************/
+.item {
+  display: flex;
+  align-items: center;
   width: 100%;
 }
 
 .item--day {
   flex-direction: column;
   align-items: start;
+  padding-left: 0.8rem;
 }
 
-.item--day p {
-  padding-left: 8px;
-}
-
-.item--day p.weekday {
+.item--day .weekday {
   font-weight: 800;
   text-transform: uppercase;
 }
 
-.item p {
-  font-size: 18px;
-  margin: 0;
+.item--day .date {
+  color: #888;
+  font-size: 1.6rem;
 }
 
-.row--day p {
-
+.item--hour {
+  padding-left: 1.6rem;
 }
 
+.item--temp {
+  justify-content: center;
+  padding: 0;
+  flex-basis: 120%;
+}
+
+.item--windspeed {
+  align-items: baseline;
+  flex-basis: 50%;
+}
+
+.item--windspeed .smaller {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.row:not(.row--labels) .item--rainfall {
+  font-size: 1.4rem;
+}
+
+.temp--max,
+.temp--min {
+  font-size: 2.2rem
+}
+
+.temp--min {
+  color: #bbb;
+  margin-left: 0.6rem;
+}
+
+
+
+/******************** FOOTER ********************/
+.footer {
+  position: fixed;
+  bottom: 0;
+  max-width: var(--container-width);
+  width: 100%;
+}
+
+.source-buttons {
+  background-color: #fff;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 2px;
+}
+
+.source-button {
+  background-color: #ddd;
+  border: 0;
+  border-radius: 4px;
+  color: #bbb;
+  cursor: pointer;
+  font-size: 3rem;
+  font-weight: 800;
+  flex-grow: 1;
+  padding: 6rem 0;
+  outline: 0;
+}
+
+.source-button:first-child { margin-right: 2px; }
+.source-button:last-child { margin-left: 2px; }
+
+.source-button--kombo {
+  flex-grow: 2;
+}
+
+.source-button:active {
+  transform: scale(0.9);
+}
+
+.source-button:hover,
+.source-button.selected {
+  background-color: #ccc;
+  color: #888;
+}

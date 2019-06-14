@@ -1,8 +1,8 @@
 import React from 'react';
 
 const SourceButton = ({ active, children, onClick }) => {
-  const className = ("btn-src btn-src--" + children.toLowerCase()) +
-                    (active ? " active" : "");
+  const className = ("source-button source-button--" + children.toLowerCase()) +
+                    (active ? " selected" : "");
 
   return (
     <button

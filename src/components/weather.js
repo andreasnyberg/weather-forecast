@@ -54,9 +54,9 @@ class Weather extends Component {
     const rows = dataFiltered.map((item, i) => <WeatherRow data={item} key={i} />);
 
     return (
-      <div>
-        <div className="row row--day">
-          <div className="item item--day">Dag</div>
+      <main>
+        <div className="row row--labels">
+          <div className="item item--day"></div>
           <div className="item item--icon">Väder</div>
           <div className="item item--temp">Temperatur</div>
           <div className="item item--rainfall">Nederbörd</div>
@@ -64,7 +64,7 @@ class Weather extends Component {
         </div>
 
         { rows }
-      </div>
+      </main>
     );
   }
 }
