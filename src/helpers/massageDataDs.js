@@ -1,5 +1,5 @@
 import { eachDay, addDays, isSameDay } from 'date-fns';
-import { getAverage, getSum, isAwakeTime, roundAndValidate, isObjectEmpty } from './misc';
+import { roundAndValidate, isObjectEmpty } from './misc';
 
 const massageDataDs = (data) => {
   const today = new Date();
