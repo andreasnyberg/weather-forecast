@@ -16,6 +16,10 @@ const Footer = () => (
       <SourceButtonContainer filter={DataSourceFilters.SHOW_OWM}>
         OWM
       </SourceButtonContainer>
+
+      <SourceButtonContainer filter={DataSourceFilters.SHOW_DS}>
+        DS
+      </SourceButtonContainer>
     </div>
   </footer>
 );

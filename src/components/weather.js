@@ -12,6 +12,7 @@ class Weather extends Component {
   componentDidMount() {
     this.props.fetchWeatherSmhi();
     this.props.fetchWeatherOwm();
+    this.props.fetchWeatherDs();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -23,9 +24,9 @@ class Weather extends Component {
   }
 
   filterData() {
-    const { SHOW_ALL, SHOW_SMHI, SHOW_OWM } = DataSourceFilters;
+    const { SHOW_ALL, SHOW_SMHI, SHOW_OWM, SHOW_DS } = DataSourceFilters;
     const { dataSourceFilter } = this.props;
-    const { smhi, owm, combo } = this.props.weatherData;
+    const { smhi, owm, ds, combo } = this.props.weatherData;
 
     switch (dataSourceFilter) {
       case SHOW_ALL:
@@ -36,6 +37,9 @@ class Weather extends Component {
 
       case SHOW_OWM:
         return owm;
+
+      case SHOW_DS:
+        return ds;
 
       default:
         throw new Error('Unknown filter: ' + dataSourceFilter);

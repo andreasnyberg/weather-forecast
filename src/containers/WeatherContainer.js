@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import {
   fetchWeatherSmhi,
   fetchWeatherOwm,
+  fetchWeatherDs,
   combineAllData
 } from '../actions';
 
@@ -16,6 +17,7 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
     fetchWeatherSmhi,
     fetchWeatherOwm,
+    fetchWeatherDs,
     combineAllData
   }, dispatch);
 }

@@ -45,7 +45,7 @@ export const isObjectEmpty = (obj) => {
 export const renderRainfallString = (value) => {
   if (value == null) {
     return '-';
-  } else if (value === 0) {
+  } else if (value === 0 || value < 0.01) {
     return 'Uppehåll';
   } else if (value < 0.2) {
     return '< 0,2 mm';

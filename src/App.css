@@ -145,8 +145,7 @@ body {
   outline: 0;
 }
 
-.source-button:first-child { margin-right: 2px; }
-.source-button:last-child { margin-left: 2px; }
+.source-button + .source-button { margin-left: 2px; }
 
 .source-button--kombo {
   flex-grow: 2;

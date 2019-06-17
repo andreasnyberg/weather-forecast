@@ -1,13 +1,16 @@
 import {
   FETCH_DATA_SMHI,
   FETCH_DATA_OWM,
+  FETCH_DATA_DS,
   MASSAGE_DATA_SMHI,
   MASSAGE_DATA_OWM,
+  MASSAGE_DATA_DS,
   COMBINE_ALL_DATA,
   SET_DATA_SOURCE_FILTER,
   API,
   API_ERROR_SMHI,
-  API_ERROR_OWM
+  API_ERROR_OWM,
+  API_ERROR_DS
 } from './types';
 
 const lat = '59.3293'; // stockholm
@@ -42,6 +45,19 @@ export function fetchWeatherOwm() {
   });
 }
 
+export function fetchWeatherDs() {
+  const API_KEY_DS = 'feb9e52560791081e7761140c0d232c6';
+  const CORSAnywhere = 'https://cors-anywhere.herokuapp.com/';
+  const url = `${CORSAnywhere}https://api.darksky.net/forecast/${API_KEY_DS}/${lat},${lon}?units=si`;
+
+  return apiAction({
+    url,
+    onSuccess: massageDataDs,
+    onFailure: () => ({ type: API_ERROR_DS }),
+    label: FETCH_DATA_DS,
+  });
+}
+
 function massageDataSmhi(data) {
   return {
     type: MASSAGE_DATA_SMHI,
@@ -53,6 +69,13 @@ function massageDataOwm(data) {
   return {
     type: MASSAGE_DATA_OWM,
     payload: data
+  };
+}
+
+function massageDataDs(data) {
+  return {
+    type: MASSAGE_DATA_DS,
+    payload: data,
   };
 }
 

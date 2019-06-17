@@ -54,7 +54,7 @@ class WeatherRow extends Component {
           </div>
 
           <div className="item item--rainfall">{rainfallString}</div>
-          <div className="item item--windspeed">{windspeed}  <span className="smaller">m/s</span></div>
+          <div className="item item--windspeed">{windspeed}<span className="smaller">m/s</span></div>
         </div>
 
         {this.state.isOpen &&

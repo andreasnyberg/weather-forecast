@@ -8,9 +8,7 @@ const massageDataOwm = (data) => {
   const massagedData = sevenDaysFromToday.map(currentDate => {
     const todayData = data.list.filter(item => isSameDay(currentDate, new Date(item.dt * 1000)));
 
-    if (!todayData.length) return {
-      date: currentDate
-    }
+    if (!todayData.length) { return { date: currentDate }}
 
     // ********** TEMPERATURE **********
     const temps = todayData
@@ -28,7 +26,7 @@ const massageDataOwm = (data) => {
     const windspeeds = todayData.map(item => item.wind.speed);
 
     // ********** HOUR DATA **********
-    const hours  = todayData.map(currentHour => {
+    const hours = todayData.map(currentHour => {
       const temp = currentHour.main.temp;
       const rainfall = currentHour.rain == null || isObjectEmpty(currentHour.rain) ? 0 : currentHour.rain['3h'];
       const windspeed = currentHour.wind.speed;

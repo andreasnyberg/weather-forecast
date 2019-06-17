@@ -1,19 +1,19 @@
 import {
-  // FETCH_DATA_SMHI,
-  // FETCH_DATA_OWM,
   MASSAGE_DATA_SMHI,
   MASSAGE_DATA_OWM,
+  MASSAGE_DATA_DS,
   COMBINE_ALL_DATA,
   SET_DATA_SOURCE_FILTER,
   DataSourceFilters
 } from '../actions/types';
 import massageDataSmhi from '../helpers/massageDataSmhi';
 import massageDataOwm from '../helpers/massageDataOwm';
+import massageDataDs from '../helpers/massageDataDs';
 import combineData from '../helpers/combineData';
 
-const { SHOW_SMHI } = DataSourceFilters;
+const { SHOW_DS } = DataSourceFilters;
 
-export function dataSourceFilter(state = SHOW_SMHI, action) {
+export function dataSourceFilter(state = SHOW_DS, action) {
   switch (action.type) {
     case SET_DATA_SOURCE_FILTER:
       return action.filter
@@ -25,6 +25,7 @@ export function dataSourceFilter(state = SHOW_SMHI, action) {
 const initialState = {
   smhi: [],
   owm: [],
+  ds: [],
   combo: []
 }
 
@@ -39,6 +40,11 @@ export function weatherData(state = initialState, action) {
 			return {
         ...state,
         owm: massageDataOwm(action.payload)
+      };
+    case MASSAGE_DATA_DS:
+			return {
+        ...state,
+        ds: massageDataDs(action.payload)
       };
     case COMBINE_ALL_DATA:
 			return {
