@@ -21,6 +21,19 @@ class WeatherRow extends Component {
     }));
   }
 
+  renderDate() {
+    const { date } = this.props.data;
+    const dayString = format(date, 'ddd', { locale: svLocale });
+    const dateString = format(date, 'D MMM', { locale: svLocale });
+
+    return (
+      <div className="item item--day">
+        <div className="weekday">{dayString}</div>
+        <div className="date">{dateString}</div>
+      </div>
+    );
+  }
+
   renderTemperature() {
     const {
       tempMax,
@@ -63,21 +76,18 @@ class WeatherRow extends Component {
   }
 
   renderWeatherRowHours() {
-    return this.props.data.hours.map((item, i) => <WeatherRowHour data={item} key={i} />);
+    const { hours } = this.props.data;
+
+    if (!hours) return;
+
+    return hours.map((item, i) => <WeatherRowHour data={item} key={i} />);
   }
 
   render() {
-    const { date } = this.props.data;
-    const dayString = format(date, 'ddd', { locale: svLocale });
-    const dateString = format(date, 'D MMM', { locale: svLocale });
-
     return (
       <React.Fragment>
         <div className="row row--day" onClick={this.handleRowClick}>
-          <div className="item item--day">
-            <div className="weekday">{dayString}</div>
-            <div className="date">{dateString}</div>
-          </div>
+          { this.renderDate() }
 
           <div className="item item--icon"></div>
 
