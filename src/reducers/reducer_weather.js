@@ -11,9 +11,9 @@ import massageDataOwm from '../helpers/massageDataOwm';
 import massageDataDs from '../helpers/massageDataDs';
 import combineData from '../helpers/combineData';
 
-const { SHOW_DS } = DataSourceFilters;
+const { SHOW_ALL } = DataSourceFilters;
 
-export function dataSourceFilter(state = SHOW_DS, action) {
+export function dataSourceFilter(state = SHOW_ALL, action) {
   switch (action.type) {
     case SET_DATA_SOURCE_FILTER:
       return action.filter
@@ -49,7 +49,7 @@ export function weatherData(state = initialState, action) {
     case COMBINE_ALL_DATA:
 			return {
         ...state,
-        combo: combineData(state.smhi, state.owm)
+        combo: combineData(state.smhi, state.owm, state.ds)
       };
 		default:
       return state

@@ -1,4 +1,4 @@
-import { getHours } from 'date-fns';
+import { getHours, eachDay, addDays } from 'date-fns';
 
 const reducer = (total, currentValue) => total + currentValue;
 const isMinusZero = (value) => 1/value === -Infinity;
@@ -57,3 +57,8 @@ export const renderRainfallString = (value) => {
     return '> 2 mm';
   }
 }
+
+const today = new Date();
+export const sevenDaysFromToday = eachDay(today, addDays(today, 7));
+
+export const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));

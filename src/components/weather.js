@@ -3,12 +3,6 @@ import { DataSourceFilters } from '../actions/types';
 import WeatherRow from './WeatherRow';
 
 class Weather extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   componentDidMount() {
     this.props.fetchWeatherSmhi();
     this.props.fetchWeatherOwm();
@@ -16,9 +10,9 @@ class Weather extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { smhi, owm, combo } = nextProps.weatherData;
+    const { smhi, owm, ds, combo } = nextProps.weatherData;
 
-    if (!combo.length && (smhi.length && owm.length)) {
+    if (!combo.length && (smhi.length && owm.length && ds.length)) {
       this.props.combineAllData();
     }
   }

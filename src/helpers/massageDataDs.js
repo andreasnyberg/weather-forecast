@@ -1,11 +1,8 @@
-import { eachDay, addDays, isSameDay } from 'date-fns';
-import { roundAndValidate, isObjectEmpty } from './misc';
+import { isSameDay } from 'date-fns';
+import { roundAndValidate, isObjectEmpty, sevenDaysFromToday } from './misc';
 
-const massageDataDs = (data) => {
-  const today = new Date();
-  const sevenDaysFromToday = eachDay(today, addDays(today, 7));
-
-  const massagedData = sevenDaysFromToday.map(currentDate => {
+const massageDataDs = (data) => (
+  sevenDaysFromToday.map(currentDate => {
     const todayData = data.daily.data.find(item => isSameDay(currentDate, new Date(item.time * 1000)));
 
     if (todayData == null || isObjectEmpty(todayData)) { return { date: currentDate }}
@@ -44,9 +41,7 @@ const massageDataDs = (data) => {
       windspeed: Math.round(windspeed),
       hours
     };
-  });
-
-  return massagedData;
-}
+  })
+)
 
 export default massageDataDs;

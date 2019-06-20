@@ -1,11 +1,15 @@
-import { eachDay, addDays, isSameDay } from 'date-fns';
-import { getAverage, getSum, isAwakeTime, roundAndValidate, isObjectEmpty } from './misc';
+import { isSameDay } from 'date-fns';
+import {
+  getAverage,
+  getSum,
+  isAwakeTime,
+  roundAndValidate,
+  isObjectEmpty,
+  sevenDaysFromToday
+} from './misc';
 
-const massageDataOwm = (data) => {
-  const today = new Date();
-  const sevenDaysFromToday = eachDay(today, addDays(today, 7));
-
-  const massagedData = sevenDaysFromToday.map(currentDate => {
+const massageDataOwm = (data) => (
+  sevenDaysFromToday.map(currentDate => {
     const todayData = data.list.filter(item => isSameDay(currentDate, new Date(item.dt * 1000)));
 
     if (!todayData.length) { return { date: currentDate }}
@@ -47,9 +51,7 @@ const massageDataOwm = (data) => {
       windspeed: getAverage(windspeeds),
       hours
     };
-  });
-
-  return massagedData;
-}
+  })
+)
 
 export default massageDataOwm;
