@@ -26,7 +26,7 @@ const massageDataOwm = (data) => (
       item.rain == null || isObjectEmpty(item.rain) ? 0 : item.rain['3h']
     ));
 
-    // // ********** WINDSPEED **********
+    // ********** WINDSPEED **********
     const windspeeds = todayData.map(item => item.wind.speed);
 
     // ********** HOUR DATA **********

@@ -1,15 +1,18 @@
 import React from 'react';
 
-const SourceButton = ({ active, children, onClick }) => {
-  const className = ("source-button source-button--" + children.toLowerCase()) +
-                    (active ? " selected" : "");
+const SourceButton = ({ selected, source, label, status, onClick }) => {
+  const className = ("source-button source-button--" + source.toLowerCase());
+  const classNameSelected = selected ? "selected" : "";
+  const classNameStatus = status ? status.toLowerCase() : "";
+  const classNames = `${className} ${classNameSelected} ${classNameStatus}`;
+  const disabled = status === 'ERROR' || selected;
 
   return (
     <button
-      className={className}
+      className={classNames}
       onClick={onClick}
-      disabled={active}>
-      {children}
+      disabled={disabled}>
+      {label}
     </button>
   );
 }

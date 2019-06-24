@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { DataSourceFilters } from '../actions/types';
+import { SourceFilters } from '../actions/types';
+import AjaxLoader from './AjaxLoader';
 import WeatherRow from './WeatherRow';
 
 class Weather extends Component {
@@ -12,28 +13,28 @@ class Weather extends Component {
   componentWillReceiveProps(nextProps) {
     const { smhi, owm, ds, combo } = nextProps.weatherData;
 
-    if (!combo.length && (smhi.length && owm.length && ds.length)) {
+    if (!combo.data.length && (smhi.status !== null && owm.status !== null && ds.status !== null)) {
       this.props.combineAllData();
     }
   }
 
   filterData() {
-    const { SHOW_ALL, SHOW_SMHI, SHOW_OWM, SHOW_DS } = DataSourceFilters;
+    const { SHOW_ALL, SHOW_SMHI, SHOW_OWM, SHOW_DS } = SourceFilters;
     const { dataSourceFilter } = this.props;
     const { smhi, owm, ds, combo } = this.props.weatherData;
 
     switch (dataSourceFilter) {
       case SHOW_ALL:
-        return combo;
+        return combo.data;
 
       case SHOW_SMHI:
-        return smhi;
+        return smhi.data;
 
       case SHOW_OWM:
-        return owm;
+        return owm.data;
 
       case SHOW_DS:
-        return ds;
+        return ds.data;
 
       default:
         throw new Error('Unknown filter: ' + dataSourceFilter);
@@ -43,10 +44,8 @@ class Weather extends Component {
   render() {
     const dataFiltered = this.filterData();
 
-    if (!dataFiltered) {
-      return (
-        <div>Loading...</div>
-      );
+    if (!dataFiltered.length) {
+      return <AjaxLoader />;
     }
 
     const rows = dataFiltered.map((item, i) => <WeatherRow data={item} key={i} />);

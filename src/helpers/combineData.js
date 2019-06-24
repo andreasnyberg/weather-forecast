@@ -2,12 +2,15 @@ import { getAverage, getAverageNoRound, sevenDaysFromToday, range } from './misc
 import { isSameDay, getHours } from 'date-fns';
 
 const combineData = (dataSmhi, dataOwm, dataDs) => {
-  const data = [ dataSmhi, dataOwm, dataDs ];
-
   const allHours = range(0, 23, 1);
-  const allHoursWithData = [];
+  let data = [];
+
+  if (dataSmhi.length) data.push(dataSmhi);
+  if (dataOwm.length) data.push(dataOwm);
+  if (dataDs.length) data.push(dataDs);
 
   return sevenDaysFromToday.map(day => {
+    const allHoursWithData = [];
     const tempMins = data.map(src => src.find(x => isSameDay(x.date, day)).tempMin);
     const tempMaxs = data.map(src => src.find(x => isSameDay(x.date, day)).tempMax);
     const rainfalls = data.map(src => src.find(x => isSameDay(x.date, day)).rainfall);
@@ -21,9 +24,7 @@ const combineData = (dataSmhi, dataOwm, dataDs) => {
                             .map(src => src.find(x => getHours(x.hour) === hour))
                             .filter(src => typeof src !== 'undefined');
 
-      if (currentHour.length) {
-        allHoursWithData.push(currentHour);
-      }
+      if (currentHour.length) allHoursWithData.push(currentHour);
     });
 
     const hours = allHoursWithData.map(item => {

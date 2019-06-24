@@ -3,7 +3,8 @@ import { setDataSourceFilter } from '../actions';
 import SourceButton from '../components/SourceButton';
 
 const mapStateToProps = (state, ownProps) => ({
-  active: ownProps.filter === state.dataSourceFilter
+  selected: ownProps.filter === state.dataSourceFilter,
+  status: state.weatherData[ownProps.source].status
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -17,9 +17,14 @@ export const API_ERROR_OWM = 'API_ERROR_OWM';
 export const API_ERROR_DS = 'API_ERROR_DS';
 
 // other constants
-export const DataSourceFilters = {
+export const SourceFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_SMHI: 'SHOW_SMHI',
   SHOW_OWM: 'SHOW_OWM',
   SHOW_DS: 'SHOW_DS'
+}
+
+export const SourceStatuses = {
+  DONE: 'DONE',
+  ERROR: 'ERROR'
 }

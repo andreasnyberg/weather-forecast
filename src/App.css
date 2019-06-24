@@ -23,9 +23,12 @@ body {
   border-right: 1px solid var(--border-color);
   max-width: var(--container-width);
   margin: 0 auto 20rem;
-  padding-top: var(--label-height);
   position: relative;
   text-align: center;
+}
+
+main {
+  padding-top: var(--label-height);
 }
 
 
@@ -142,14 +145,11 @@ body {
   font-weight: 800;
   flex-grow: 1;
   padding: 6rem 0;
+  position: relative;
   outline: 0;
 }
 
 .source-button + .source-button { margin-left: 2px; }
-
-.source-button--kombo {
-  flex-grow: 2;
-}
 
 .source-button:active {
   transform: scale(0.9);
@@ -159,4 +159,79 @@ body {
 .source-button.selected {
   background-color: #ccc;
   color: #888;
+}
+
+.source-button.done:before,
+.source-button.error:before {
+  content: '';
+  border-radius: 1000px;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 10px;
+  right: 10px;
+
+  animation: status-animation 1.3s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes status-animation {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  40%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.source-button.done:before {
+  background-color: #20c36a94;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+}
+
+.source-button.error:before {
+  background-color: #ea4c277a;
+}
+
+.source-button--combo {
+  flex-grow: 2;
+}
+
+/******************** AJAX LOADER ********************/
+#ajax-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#ajax-loader > .bounce {
+	background-color: #ccc;
+
+	width: 18px;
+	height: 18px;
+
+	border-radius: 100%;
+	display: inline-block;
+	animation: bouncedelay 1.2s infinite ease-in-out both;
+}
+
+#ajax-loader .bounce--1 {
+	animation-delay: -0.32s;
+}
+
+#ajax-loader .bounce--2 {
+	animation-delay: -0.16s;
+}
+
+@keyframes bouncedelay {
+	0%, 80%, 100% {
+		transform: scale(0);
+	} 40% {
+		transform: scale(0.7);
+	}
 }
