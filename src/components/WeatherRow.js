@@ -34,6 +34,16 @@ class WeatherRow extends Component {
     );
   }
 
+  renderIcon() {
+    const { icon } = this.props.data;
+
+    return (
+      <div className="item item--icon">
+        <span className={`icon icon--${icon}`} />
+      </div>
+    );
+  }
+
   renderTemperature() {
     const {
       tempMax,
@@ -88,9 +98,7 @@ class WeatherRow extends Component {
       <React.Fragment>
         <div className="row row--day" onClick={this.handleRowClick}>
           { this.renderDate() }
-
-          <div className="item item--icon"></div>
-
+          { this.renderIcon() }
           { this.renderTemperature() }
           { this.renderRainfall() }
           { this.renderWindspeed() }

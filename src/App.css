@@ -1,7 +1,7 @@
 :root {
   --container-width: 55rem;
   --border-color: #eaeaea;
-  --label-height: 4rem;
+  --label-height: 3rem;
 }
 
 html { font-size: 62.5%; }
@@ -70,7 +70,11 @@ main {
 .item--day {
   flex-direction: column;
   align-items: start;
-  padding-left: 0.8rem;
+}
+
+.item--day .weekday,
+.item--day .date {
+  padding-left: 1rem;
 }
 
 .item--day .weekday {
@@ -83,8 +87,17 @@ main {
   font-size: 1.6rem;
 }
 
+.item--day,
 .item--hour {
+  flex-basis: 70%;
+}
+
+.item--hour .hour {
   padding-left: 1.6rem;
+}
+
+.item--icon {
+  justify-content: center;
 }
 
 .item--temp {
@@ -235,3 +248,26 @@ main {
 		transform: scale(0.7);
 	}
 }
+
+/******************** ICONS ********************/
+.item--icon {
+  height: 100%;
+}
+.icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.icon--clear-day { background-image: url(./images/clear-day.svg); }
+.icon--partly-cloudy-day { background-image: url(./images/partly-cloudy-day.svg); }
+.icon--cloudy { background-image: url(./images/cloudy.svg); }
+.icon--overcast { background-image: url(./images/overcast.svg); }
+.icon--rain { background-image: url(./images/rain.svg); }
+.icon--sleet { background-image: url(./images/sleet.svg); }
+.icon--snow { background-image: url(./images/snow.svg); }
+.icon--fog { background-image: url(./images/fog.svg); }
+.icon--thunder { background-image: url(./images/thunder.svg); }
+.icon--night { background-image: url(./images/night.svg); }

@@ -5,6 +5,7 @@ import { renderRainfallString } from '../helpers/misc';
 const WeatherRow = (props) => {
   const {
     hour,
+    icon,
     temp,
     rainfall,
     windspeed
@@ -16,10 +17,12 @@ const WeatherRow = (props) => {
   return (
     <div className="row row--hour">
       <div className="item item--hour">
-        {hourString}
+        <div className="hour">{hourString}</div>
       </div>
 
-      <div className="item item--icon"></div>
+      <div className="item item--icon">
+        <span className={`icon icon--${icon}`} />
+      </div>
 
       <div className="item item--temp">
         {temp}&#176;

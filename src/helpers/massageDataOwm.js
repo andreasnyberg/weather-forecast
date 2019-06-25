@@ -1,4 +1,5 @@
 import { isSameDay } from 'date-fns';
+import { iconsOwm } from './icons';
 import {
   getAverage,
   getSum,
@@ -32,11 +33,13 @@ const massageDataOwm = (data) => (
     // ********** HOUR DATA **********
     const hours = todayData.map(currentHour => {
       const temp = currentHour.main.temp;
+      const icon = currentHour.weather[0].icon;
       const rainfall = currentHour.rain == null || isObjectEmpty(currentHour.rain) ? 0 : currentHour.rain['3h'];
       const windspeed = currentHour.wind.speed;
 
       return {
         hour: new Date(currentHour.dt * 1000),
+        icon: iconsOwm[icon],
         temp: roundAndValidate(temp),
         rainfall,
         windspeed: Math.round(windspeed)

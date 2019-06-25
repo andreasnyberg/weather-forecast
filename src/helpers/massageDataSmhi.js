@@ -1,4 +1,5 @@
 import { isSameDay } from 'date-fns';
+import { iconsSmhi } from './icons';
 import {
   getAverage,
   getSum,
@@ -31,11 +32,13 @@ const massageDataSmhi = (data) => (
     // ********** HOUR DATA **********
     const hours  = todayData.map(currentHour => {
       const temp = currentHour.parameters.find(item => item.name === 't').values[0];
+      const icon = currentHour.parameters.find(item => item.name === 'Wsymb2').values[0];
       const rainfall = currentHour.parameters.find(item => item.name === 'pmedian').values[0];
       const windspeed = currentHour.parameters.find(item => item.name === 'ws').values[0];
 
       return {
         hour: currentHour.validTime,
+        icon: iconsSmhi[icon],
         temp: roundAndValidate(temp),
         rainfall,
         windspeed: Math.round(windspeed)
