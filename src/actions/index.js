@@ -13,9 +13,6 @@ import {
   API_ERROR_DS
 } from './types';
 
-const lat = '59.3293'; // stockholm
-const lon = '18.0686'; // stockholm
-
 // action creators
 export function setDataSourceFilter(filter) {
   return {
@@ -24,16 +21,16 @@ export function setDataSourceFilter(filter) {
   }
 }
 
-export function fetchWeatherSmhi() {
+export function fetchWeatherSmhi(lat, lon) {
   return apiAction({
-    url: `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`,
+    url: `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon.toFixed(4)}/lat/${lat.toFixed(4)}/data.json`,
     onSuccess: massageDataSmhi,
     onFailure: () => ({ type: API_ERROR_SMHI }),
     label: FETCH_DATA_SMHI
   });
 }
 
-export function fetchWeatherOwm() {
+export function fetchWeatherOwm(lat, lon) {
 	const API_KEY_OWM = '2e9a81cad4d1213fac1d8c5baa8ef2c5';
   const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=${API_KEY_OWM}&units=metric`;
 
@@ -45,7 +42,7 @@ export function fetchWeatherOwm() {
   });
 }
 
-export function fetchWeatherDs() {
+export function fetchWeatherDs(lat, lon) {
   const API_KEY_DS = 'feb9e52560791081e7761140c0d232c6';
   const CORSAnywhere = 'https://cors-anywhere.herokuapp.com/';
   const url = `${CORSAnywhere}https://api.darksky.net/forecast/${API_KEY_DS}/${lat},${lon}?units=si`;

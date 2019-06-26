@@ -5,9 +5,7 @@ import WeatherRow from './WeatherRow';
 
 class Weather extends Component {
   componentDidMount() {
-    this.props.fetchWeatherSmhi();
-    this.props.fetchWeatherOwm();
-    this.props.fetchWeatherDs();
+    this.getUserCoordinates();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -16,6 +14,30 @@ class Weather extends Component {
     if (!combo.data.length && (smhi.status !== null && owm.status !== null && ds.status !== null)) {
       this.props.combineAllData();
     }
+  }
+
+  getUserCoordinates() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          this.fetchData(lat, lon);
+        },
+        () => { this.fetchData(); }
+      );
+    } else {
+      // No browser support for geolocation.
+      this.fetchData();
+    }
+  }
+
+  // Stockholm as default.
+  fetchData(lat = '59.3293', lon = '18.0686') {
+    this.props.fetchWeatherSmhi(lat, lon);
+    this.props.fetchWeatherOwm(lat, lon);
+    this.props.fetchWeatherDs(lat, lon);
   }
 
   filterData() {
