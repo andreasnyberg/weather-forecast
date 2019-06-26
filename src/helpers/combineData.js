@@ -1,4 +1,4 @@
-import { getAverage, getAverageNoRound, sevenDaysFromToday, range } from './misc';
+import { getAverage, getAverageNoRound, sevenDaysFromToday, range, findMostFrequentIcon } from './misc';
 import { isSameDay, getHours } from 'date-fns';
 
 const combineData = (dataSmhi, dataOwm, dataDs) => {
@@ -11,6 +11,7 @@ const combineData = (dataSmhi, dataOwm, dataDs) => {
 
   return sevenDaysFromToday.map(day => {
     const allHoursWithData = [];
+    const icons = data.map(src => src.find(x => isSameDay(x.date, day)).icon);
     const tempMins = data.map(src => src.find(x => isSameDay(x.date, day)).tempMin);
     const tempMaxs = data.map(src => src.find(x => isSameDay(x.date, day)).tempMax);
     const rainfalls = data.map(src => src.find(x => isSameDay(x.date, day)).rainfall);
@@ -29,20 +30,19 @@ const combineData = (dataSmhi, dataOwm, dataDs) => {
 
     const hours = allHoursWithData.map(item => {
       if (item.length < 2) {
-        return {
-          hour: item[0].hour,
-          temp: item[0].temp,
-          rainfall: item[0].rainfall,
-          windspeed: item[0].windspeed
-        }
+        const { hour, icon, temp, rainfall, windspeed } = item[0];
+
+        return { hour, icon, temp, rainfall, windspeed };
       }
 
       const temps = item.map(x => x.temp);
+      const icons = item.map(x => x.icon);
       const rainfalls = item.map(x => x.rainfall);
       const windspeeds = item.map(x => x.windspeed);
 
       return {
         hour: item[0].hour,
+        icon: findMostFrequentIcon(icons, true),
         temp: getAverage(temps),
         rainfall: getAverageNoRound(rainfalls),
         windspeed: getAverage(windspeeds)
@@ -51,6 +51,7 @@ const combineData = (dataSmhi, dataOwm, dataDs) => {
 
     return {
       date: day,
+      icon: findMostFrequentIcon(icons, true),
       tempMin: getAverage(tempMins),
       tempMax: getAverage(tempMaxs),
       rainfall: getAverage(rainfalls, false),

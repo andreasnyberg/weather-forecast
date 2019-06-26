@@ -5,7 +5,8 @@ import {
   getSum,
   isAwakeTime,
   roundAndValidate,
-  sevenDaysFromToday
+  sevenDaysFromToday,
+  findMostFrequentIcon
 } from './misc';
 
 const massageDataSmhi = (data) => (
@@ -30,7 +31,7 @@ const massageDataSmhi = (data) => (
     ));
 
     // ********** HOUR DATA **********
-    const hours  = todayData.map(currentHour => {
+    const hours = todayData.map(currentHour => {
       const temp = currentHour.parameters.find(item => item.name === 't').values[0];
       const icon = currentHour.parameters.find(item => item.name === 'Wsymb2').values[0];
       const rainfall = currentHour.parameters.find(item => item.name === 'pmedian').values[0];
@@ -47,6 +48,7 @@ const massageDataSmhi = (data) => (
 
     return {
       date: currentDate,
+      icon: findMostFrequentIcon(hours),
       tempMin: roundAndValidate(tempMin),
       tempMax: roundAndValidate(tempMax),
       rainfall: getSum(rainfalls),

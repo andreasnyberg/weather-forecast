@@ -38,6 +38,10 @@ export const isAwakeTime = (date) => (
   getHours(date) >= 7 && getHours(date) <= 23
 );
 
+export const isCenterOfDayTime = (date) => (
+  getHours(date) >= 10 && getHours(date) <= 19
+);
+
 export const isObjectEmpty = (obj) => {
   return Object.entries(obj).length === 0 && obj.constructor === Object;
 }
@@ -62,3 +66,27 @@ const today = new Date();
 export const sevenDaysFromToday = eachDay(today, addDays(today, 7));
 
 export const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
+
+export const findMostFrequentIcon = (arr, byStrings = false) => {
+  const array = byStrings ? [...arr] : arr.filter(item => isCenterOfDayTime(item.hour));
+  const counts = {};
+  let compare = -1;
+  let mostFrequent;
+
+  for (let i = 0, len = array.length; i < len; i++) {
+    const word = byStrings ? array : array[i].icon;
+
+    if (counts[word] === undefined) {
+      counts[word] = 1;
+    } else {
+      counts[word] = counts[word] + 1;
+    }
+
+    if (counts[word] > compare) {
+      compare = counts[word];
+      mostFrequent = array[i];
+    }
+  }
+
+  return byStrings ? mostFrequent : mostFrequent.icon;
+}

@@ -6,7 +6,8 @@ import {
   isAwakeTime,
   roundAndValidate,
   isObjectEmpty,
-  sevenDaysFromToday
+  sevenDaysFromToday,
+  findMostFrequentIcon
 } from './misc';
 
 const massageDataOwm = (data) => (
@@ -48,6 +49,7 @@ const massageDataOwm = (data) => (
 
     return {
       date: currentDate,
+      icon: findMostFrequentIcon(hours),
       tempMin: roundAndValidate(tempMin),
       tempMax: roundAndValidate(tempMax),
       rainfall: getSum(rainfalls),
