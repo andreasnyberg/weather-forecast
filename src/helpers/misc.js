@@ -67,14 +67,13 @@ export const sevenDaysFromToday = eachDay(today, addDays(today, 7));
 
 export const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
 
-export const findMostFrequentIcon = (arr, byStrings = false) => {
-  const array = byStrings ? [...arr] : arr.filter(item => isCenterOfDayTime(item.hour));
+export const findMostFrequentIcon = (array) => {
   const counts = {};
   let compare = -1;
   let mostFrequent;
 
   for (let i = 0, len = array.length; i < len; i++) {
-    const word = byStrings ? array : array[i].icon;
+    const word = array[i];
 
     if (counts[word] === undefined) {
       counts[word] = 1;
@@ -88,5 +87,5 @@ export const findMostFrequentIcon = (arr, byStrings = false) => {
     }
   }
 
-  return byStrings ? mostFrequent : mostFrequent.icon;
+  return mostFrequent;
 }

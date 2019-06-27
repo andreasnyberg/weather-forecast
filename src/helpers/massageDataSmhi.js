@@ -4,6 +4,7 @@ import {
   getAverage,
   getSum,
   isAwakeTime,
+  isCenterOfDayTime,
   roundAndValidate,
   sevenDaysFromToday,
   findMostFrequentIcon
@@ -12,6 +13,27 @@ import {
 const massageDataSmhi = (data) => (
   sevenDaysFromToday.map(currentDate => {
     const todayData = data.timeSeries.filter(item => isSameDay(currentDate, item.validTime));
+
+    // ********** HOUR DATA **********
+    const hours = todayData.map(currentHour => {
+      const temp = currentHour.parameters.find(item => item.name === 't').values[0];
+      const icon = currentHour.parameters.find(item => item.name === 'Wsymb2').values[0];
+      const rainfall = currentHour.parameters.find(item => item.name === 'pmedian').values[0];
+      const windspeed = currentHour.parameters.find(item => item.name === 'ws').values[0];
+
+      return {
+        hour: currentHour.validTime,
+        icon: iconsSmhi[icon],
+        temp: roundAndValidate(temp),
+        rainfall,
+        windspeed: Math.round(windspeed)
+      }
+    });
+
+    // ********** ICON **********
+    const icons = hours
+                    .filter(item => isCenterOfDayTime(item.hour))
+                    .map(item => item.icon);
 
     // ********** TEMPERATURE **********
     const temps = todayData
@@ -30,25 +52,9 @@ const massageDataSmhi = (data) => (
       item.parameters.find(item => item.name === 'ws').values[0]
     ));
 
-    // ********** HOUR DATA **********
-    const hours = todayData.map(currentHour => {
-      const temp = currentHour.parameters.find(item => item.name === 't').values[0];
-      const icon = currentHour.parameters.find(item => item.name === 'Wsymb2').values[0];
-      const rainfall = currentHour.parameters.find(item => item.name === 'pmedian').values[0];
-      const windspeed = currentHour.parameters.find(item => item.name === 'ws').values[0];
-
-      return {
-        hour: currentHour.validTime,
-        icon: iconsSmhi[icon],
-        temp: roundAndValidate(temp),
-        rainfall,
-        windspeed: Math.round(windspeed)
-      }
-    });
-
     return {
       date: currentDate,
-      icon: findMostFrequentIcon(hours),
+      icon: findMostFrequentIcon(icons),
       tempMin: roundAndValidate(tempMin),
       tempMax: roundAndValidate(tempMax),
       rainfall: getSum(rainfalls),

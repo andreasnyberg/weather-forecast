@@ -21,9 +21,12 @@ export function setDataSourceFilter(filter) {
   }
 }
 
-export function fetchWeatherSmhi(lat, lon) {
+export function fetchWeatherSmhi(lt, ln) {
+  const lat = parseFloat(lt).toFixed(4);
+  const lon = parseFloat(ln).toFixed(4);
+
   return apiAction({
-    url: `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon.toFixed(4)}/lat/${lat.toFixed(4)}/data.json`,
+    url: `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`,
     onSuccess: massageDataSmhi,
     onFailure: () => ({ type: API_ERROR_SMHI }),
     label: FETCH_DATA_SMHI
@@ -32,7 +35,7 @@ export function fetchWeatherSmhi(lat, lon) {
 
 export function fetchWeatherOwm(lat, lon) {
 	const API_KEY_OWM = '2e9a81cad4d1213fac1d8c5baa8ef2c5';
-  const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=${API_KEY_OWM}&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=${API_KEY_OWM}&units=metric`;
 
   return apiAction({
     url,

@@ -8,16 +8,6 @@ const massageDataDs = (data) => (
 
     if (todayData == null || isObjectEmpty(todayData)) { return { date: currentDate }}
 
-    // ********** TEMPERATURE **********
-    const tempMin = todayData.apparentTemperatureLow;
-    const tempMax = todayData.apparentTemperatureHigh;
-
-    // ********** RAINFALL **********
-    const rainfall = todayData.precipIntensity;
-
-    // ********** WINDSPEED **********
-    const windspeed = todayData.windSpeed;
-
     // ********** HOUR DATA **********
     const hours = data.hourly.data
       .filter(item => isSameDay(currentDate, new Date(item.time * 1000)))
@@ -35,6 +25,16 @@ const massageDataDs = (data) => (
           windspeed: Math.round(windspeed)
         }
     });
+
+    // ********** TEMPERATURE **********
+    const tempMin = todayData.apparentTemperatureLow;
+    const tempMax = todayData.apparentTemperatureHigh;
+
+    // ********** RAINFALL **********
+    const rainfall = todayData.precipIntensity;
+
+    // ********** WINDSPEED **********
+    const windspeed = todayData.windSpeed;
 
     return {
       date: currentDate,

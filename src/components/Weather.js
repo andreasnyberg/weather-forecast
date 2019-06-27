@@ -6,6 +6,7 @@ import WeatherRow from './WeatherRow';
 class Weather extends Component {
   componentDidMount() {
     this.getUserCoordinates();
+    //this.fetchData();
   }
 
   componentWillReceiveProps(nextProps) {

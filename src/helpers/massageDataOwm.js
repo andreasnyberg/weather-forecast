@@ -4,6 +4,7 @@ import {
   getAverage,
   getSum,
   isAwakeTime,
+  isCenterOfDayTime,
   roundAndValidate,
   isObjectEmpty,
   sevenDaysFromToday,
@@ -15,21 +16,6 @@ const massageDataOwm = (data) => (
     const todayData = data.list.filter(item => isSameDay(currentDate, new Date(item.dt * 1000)));
 
     if (!todayData.length) { return { date: currentDate }}
-
-    // ********** TEMPERATURE **********
-    const temps = todayData
-                    .filter(item => isAwakeTime(new Date(item.dt * 1000)))
-                    .map(item => item.main.temp);
-    const tempMin = Math.min(...temps);
-    const tempMax = Math.max(...temps);
-
-    // ********** RAINFALL **********
-    const rainfalls = todayData.map(item => (
-      item.rain == null || isObjectEmpty(item.rain) ? 0 : item.rain['3h']
-    ));
-
-    // ********** WINDSPEED **********
-    const windspeeds = todayData.map(item => item.wind.speed);
 
     // ********** HOUR DATA **********
     const hours = todayData.map(currentHour => {
@@ -47,9 +33,29 @@ const massageDataOwm = (data) => (
       }
     });
 
+    // ********** ICON **********
+    const icons = hours
+                    .filter(item => isCenterOfDayTime(item.hour))
+                    .map(item => item.icon);
+
+    // ********** TEMPERATURE **********
+    const temps = todayData
+                    .filter(item => isAwakeTime(new Date(item.dt * 1000)))
+                    .map(item => item.main.temp);
+    const tempMin = Math.min(...temps);
+    const tempMax = Math.max(...temps);
+
+    // ********** RAINFALL **********
+    const rainfalls = todayData.map(item => (
+      item.rain == null || isObjectEmpty(item.rain) ? 0 : item.rain['3h']
+    ));
+
+    // ********** WINDSPEED **********
+    const windspeeds = todayData.map(item => item.wind.speed);
+
     return {
       date: currentDate,
-      icon: findMostFrequentIcon(hours),
+      icon: findMostFrequentIcon(icons),
       tempMin: roundAndValidate(tempMin),
       tempMax: roundAndValidate(tempMax),
       rainfall: getSum(rainfalls),
