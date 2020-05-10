@@ -1,0 +1,25 @@
+{
+  "name": "weather-forecast",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://andreasnyberg.github.io/weather-forecast/",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "date-fns": "^1.29.0",
+    "gh-pages": "^2.0.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
