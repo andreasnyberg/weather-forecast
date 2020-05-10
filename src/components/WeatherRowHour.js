@@ -30,7 +30,9 @@ const WeatherRow = (props) => {
       </div>
 
       <div className="item item--rainfall">
-        {rainfallString}
+        <span>
+          {rainfallString}
+        </span>
       </div>
 
       <div className="item item--windspeed">

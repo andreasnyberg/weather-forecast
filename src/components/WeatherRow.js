@@ -56,8 +56,8 @@ class WeatherRow extends Component {
 
     return (
       <div className="item item--temp">
-        <div className="temp--max">{tempMax}&#176;</div>
-        <div className="temp--min">{tempMin}&#176;</div>
+        <div className="temp--max"><span>{tempMax}&#176;</span></div>
+        <div className="temp--min"><span>{tempMin}&#176;</span></div>
       </div>
     );
   }
@@ -69,7 +69,7 @@ class WeatherRow extends Component {
     const rainfallString = renderRainfallString(rainfall);
 
     return (
-      <div className="item item--rainfall">{rainfallString}</div>
+      <div className="item item--rainfall"><span>{rainfallString}</span></div>
     );
   }
 

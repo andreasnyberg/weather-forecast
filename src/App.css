@@ -42,6 +42,7 @@ main {
 
 .row--labels {
   background-color: #ddd;
+  border-bottom: none;
   color: #888;
   font-size: 1.4rem;
   height: var(--label-height);
@@ -70,11 +71,31 @@ main {
 .item--day {
   flex-direction: column;
   align-items: start;
+  justify-content: center;
 }
 
+.item--rainfall {
+  justify-content: flex-end;
+  position: relative;
+}
+
+.item--rainfall span {
+  position: absolute;
+  right: 1rem;
+}
+
+.row:not(.row--labels) .item--rainfall {
+  font-size: 1.2rem;
+}
+
+.row:not(.row--labels) .item--rainfall span {
+  top: -0.4rem;
+}
+
+.row--labels .item--day span,
 .item--day .weekday,
 .item--day .date {
-  padding-left: 1rem;
+  padding-left: 0.8rem;
 }
 
 .item--day .weekday {
@@ -84,7 +105,7 @@ main {
 
 .item--day .date {
   color: #888;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 }
 
 .item--day,
@@ -116,18 +137,27 @@ main {
   margin-left: 0.5rem;
 }
 
-.row:not(.row--labels) .item--rainfall {
-  font-size: 1.4rem;
-}
-
 .temp--max,
 .temp--min {
+  font-size: 2.2rem;
+  width: 50%;
+  display: flex;
+}
+
+.temp--max span,
+.temp--min span {
   font-size: 2.2rem
+}
+
+.temp--max {
+  justify-content: flex-end;
+  padding-right: 0.3rem;
 }
 
 .temp--min {
   color: #bbb;
-  margin-left: 0.6rem;
+  padding-left: 0.3rem;
+  justify-content: flex-start;
 }
 
 
@@ -155,9 +185,11 @@ main {
   color: #bbb;
   cursor: pointer;
   font-size: 3rem;
+  font-size: 2rem;
   font-weight: 800;
   flex-grow: 1;
   padding: 6rem 0;
+  padding: 2rem 0;
   position: relative;
   outline: 0;
 }
@@ -271,3 +303,23 @@ main {
 .icon--fog { background-image: url(./images/fog.svg); }
 .icon--thunder { background-image: url(./images/thunder.svg); }
 .icon--night { background-image: url(./images/night.svg); }
+
+/******************** TABLET ********************/
+@media screen and (min-width: 768px) {
+  .row--labels .item--day span,
+  .item--day .weekday,
+  .item--day .date,
+  .item--hour .hour {
+    padding-left: 2rem;
+  }
+
+  .item--rainfall span {
+      position: absolute;
+      right: 3rem;
+  }
+}
+
+/******************** DESKTOP ********************/
+@media screen and (min-width: 992px) {
+
+}

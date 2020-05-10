@@ -76,10 +76,10 @@ class Weather extends Component {
     return (
       <main>
         <div className="row row--labels">
-          <div className="item item--day"></div>
+          <div className="item item--day"><span>Dag</span></div>
           <div className="item item--icon">Väder</div>
           <div className="item item--temp">Temperatur</div>
-          <div className="item item--rainfall">Nederbörd</div>
+          <div className="item item--rainfall"><span>Nederbörd</span></div>
           <div className="item item--windspeed">Vind</div>
         </div>
 
