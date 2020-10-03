@@ -40,6 +40,14 @@ main {
   height: 6rem;
 }
 
+.row--day {
+  cursor: pointer;
+}
+
+.row--day:hover {
+  background-color: #f3f3f3;
+}
+
 .row--labels {
   background-color: #ddd;
   border-bottom: none;
