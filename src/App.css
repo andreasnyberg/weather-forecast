@@ -52,7 +52,7 @@ main {
   background-color: #ddd;
   border-bottom: none;
   color: #888;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   height: var(--label-height);
   position: fixed;
   top: 0;
@@ -67,6 +67,11 @@ main {
 
 .row--hour:not(:last-child) {
   border-color: #fff;
+}
+
+.row--night {
+  color: #bbb;
+  height: 3rem;
 }
 
 /******************** ITEMS ********************/

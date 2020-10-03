@@ -14,9 +14,10 @@ const WeatherRow = (props) => {
   const hourString = format(hour, 'HH:mm');
   const rainfallString = renderRainfallString(rainfall);
   const iconClass = isAwakeTime(hour) ? icon : 'night';
+  const rowClass = isAwakeTime(hour) ? '' : 'row--night';
 
   return (
-    <div className="row row--hour">
+    <div className={`row row--hour ${rowClass}`}>
       <div className="item item--hour">
         <div className="hour">{hourString}</div>
       </div>
