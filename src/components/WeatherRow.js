@@ -69,7 +69,7 @@ class WeatherRow extends Component {
     const rainfallString = renderRainfallString(rainfall);
 
     return (
-      <div className="item item--rainfall"><span>{rainfallString}</span></div>
+      <div className="item item--rainfall">{rainfallString}</div>
     );
   }
 
@@ -87,7 +87,6 @@ class WeatherRow extends Component {
 
   renderWeatherRowHours() {
     const { hours } = this.props.data;
-
     if (!hours) return;
 
     return hours.map((item, i) => <WeatherRowHour data={item} key={i} />);
@@ -100,8 +99,10 @@ class WeatherRow extends Component {
           { this.renderDate() }
           { this.renderIcon() }
           { this.renderTemperature() }
-          { this.renderRainfall() }
-          { this.renderWindspeed() }
+          <div className="items">
+            { this.renderRainfall() }
+            { this.renderWindspeed() }
+          </div>
         </div>
 
         {this.state.isOpen &&

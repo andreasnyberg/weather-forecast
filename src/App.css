@@ -1,7 +1,7 @@
 :root {
   --container-width: 55rem;
   --border-color: #eaeaea;
-  --label-height: 3rem;
+  --label-height: 2rem;
 }
 
 html { font-size: 62.5%; }
@@ -52,12 +52,13 @@ main {
   background-color: #ddd;
   border-bottom: none;
   color: #888;
-  font-size: 1.2rem;
+  font-size: 1rem;
   height: var(--label-height);
   position: fixed;
   top: 0;
   max-width: var(--container-width);
   width: 100%;
+  z-index: 1;
 }
 
 .row--hour {
@@ -75,6 +76,13 @@ main {
 }
 
 /******************** ITEMS ********************/
+.items {
+  display: flex;
+  align-items: baseline;
+  flex-basis: 120%;
+  padding-bottom: 0.2rem;
+}
+
 .item {
   display: flex;
   align-items: center;
@@ -90,10 +98,6 @@ main {
 .item--rainfall {
   justify-content: flex-end;
   position: relative;
-}
-
-.item--rainfall span {
-  position: absolute;
   right: 1rem;
 }
 
@@ -101,13 +105,10 @@ main {
   font-size: 1.2rem;
 }
 
-.row:not(.row--labels) .item--rainfall span {
-  top: -0.4rem;
-}
-
 .row--labels .item--day span,
 .item--day .weekday,
-.item--day .date {
+.item--day .date,
+.item--hour .hour {
   padding-left: 0.8rem;
 }
 
@@ -124,10 +125,6 @@ main {
 .item--day,
 .item--hour {
   flex-basis: 70%;
-}
-
-.item--hour .hour {
-  padding-left: 1.6rem;
 }
 
 .item--icon {
@@ -147,7 +144,8 @@ main {
 
 .item--windspeed .smaller {
   font-size: 1rem;
-  margin-left: 0.5rem;
+  margin-left: 0.2rem;
+  margin-right: 0.5rem;
 }
 
 .temp--max,
@@ -326,9 +324,8 @@ main {
     padding-left: 2rem;
   }
 
-  .item--rainfall span {
-      position: absolute;
-      right: 3rem;
+  .item--rainfall {
+    right: 4rem;
   }
 }
 
