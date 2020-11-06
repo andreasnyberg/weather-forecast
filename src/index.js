@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import reducers from './reducers';
 import apiMiddleware from './middleware/api';
-import App from './components/App';
+import AppContainer from './containers/AppContainer';
 
 const store = createStore(
   reducers,
@@ -15,7 +15,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>
   , document.getElementById('root'));
 

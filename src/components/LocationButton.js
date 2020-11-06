@@ -1,10 +1,10 @@
 import React from 'react';
 
-const LocationButton = ({ onClick }) => {
+const LocationButton = ({ onGetLocation }) => {
   return (
     <div className="location-button-container">
       <button
-        onClick={onClick}
+        onClick={onGetLocation}
         className="button button--location">
         <span />
       </button>

@@ -6,6 +6,7 @@ import {
   MASSAGE_DATA_OWM,
   MASSAGE_DATA_DS,
   COMBINE_ALL_DATA,
+  CLEAR_ALL_DATA,
   SET_DATA_SOURCE_FILTER,
   SourceFilters,
   SourceStatuses
@@ -79,6 +80,10 @@ export function weatherData(state = initialState, action) {
           data: combineData(state.smhi.data, state.owm.data, state.ds.data),
           status: DONE
         }
+      };
+    case CLEAR_ALL_DATA:
+			return {
+        ...initialState,
       };
     case API_ERROR_SMHI:
 			return {

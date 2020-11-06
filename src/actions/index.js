@@ -6,11 +6,12 @@ import {
   MASSAGE_DATA_OWM,
   MASSAGE_DATA_DS,
   COMBINE_ALL_DATA,
+  CLEAR_ALL_DATA,
   SET_DATA_SOURCE_FILTER,
   API,
   API_ERROR_SMHI,
   API_ERROR_OWM,
-  API_ERROR_DS
+  API_ERROR_DS,
 } from './types';
 
 // action creators
@@ -108,4 +109,10 @@ export function combineAllData() {
   return {
     type: COMBINE_ALL_DATA
   };
+}
+
+export function clearAllData() {
+  return {
+    type: CLEAR_ALL_DATA
+  }
 }
