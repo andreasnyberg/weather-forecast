@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SourceButton = ({ selected, source, label, status, onClick }) => {
-  const className = ("source-button source-button--" + source.toLowerCase());
+  const className = ("button button--source button--" + source.toLowerCase());
   const classNameSelected = selected ? "selected" : "";
   const classNameStatus = status ? status.toLowerCase() : "";
   const classNames = `${className} ${classNameSelected} ${classNameStatus}`;

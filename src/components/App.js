@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import '../App.css';
-import VisibleWeather from '../containers/WeatherContainer';
+import WeatherContainer from '../containers/WeatherContainer';
 import Footer from './Footer';
+import LocationButtonContainer from '../containers/LocationButtonContainer';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <VisibleWeather />
+        <WeatherContainer />
+        <LocationButtonContainer />
         <Footer />
       </div>
     );

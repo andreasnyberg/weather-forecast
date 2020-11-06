@@ -68,22 +68,12 @@ class Weather extends Component {
     const dataFiltered = this.filterData();
 
     if (!dataFiltered.length) {
-      return <AjaxLoader />;
+      return <LoadingSpinner />;
     }
 
-    const rows = dataFiltered.map((item, i) => <WeatherRow data={item} key={i} />);
-
     return (
-      <main>
-        <div className="row row--labels">
-          <div className="item item--day"><span>Dag</span></div>
-          <div className="item item--icon">Väder</div>
-          <div className="item item--temp">Temperatur</div>
-          <div className="item item--rainfall"><span>Nederbörd</span></div>
-          <div className="item item--windspeed">Vind</div>
-        </div>
-
-        { rows }
+      <main className="weather-container">
+        { dataFiltered.map((item, i) => <WeatherRow data={item} key={i} />) }
       </main>
     );
   }

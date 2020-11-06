@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AjaxLoader = () => {
+const LoadingSpinner = () => {
   return (
-    <div id="ajax-loader">
+    <div className="loading-spinner">
       <div className="bounce bounce--1"></div>
       <div className="bounce bounce--2"></div>
       <div className="bounce bounce--3"></div>
@@ -10,4 +10,4 @@ const AjaxLoader = () => {
   );
 };
 
-export default AjaxLoader;
+export default LoadingSpinner;

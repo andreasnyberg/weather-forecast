@@ -1,7 +1,6 @@
 :root {
   --container-width: 55rem;
   --border-color: #eaeaea;
-  --label-height: 2rem;
 }
 
 html { font-size: 62.5%; }
@@ -19,18 +18,15 @@ body {
 
 .App {
   background-color: #fff;
+  margin: 0 auto 20rem;
+  max-width: var(--container-width);
+  position: relative;
+}
+
+.weather-container {
   border-left: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
-  max-width: var(--container-width);
-  margin: 0 auto 20rem;
-  position: relative;
-  text-align: center;
 }
-
-main {
-  padding-top: var(--label-height);
-}
-
 
 /******************** ROWS ********************/
 .row {
@@ -46,19 +42,6 @@ main {
 
 .row--day:hover {
   background-color: #f3f3f3;
-}
-
-.row--labels {
-  background-color: #ddd;
-  border-bottom: none;
-  color: #888;
-  font-size: 1rem;
-  height: var(--label-height);
-  position: fixed;
-  top: 0;
-  max-width: var(--container-width);
-  width: 100%;
-  z-index: 1;
 }
 
 .row--hour {
@@ -97,15 +80,11 @@ main {
 
 .item--rainfall {
   justify-content: flex-end;
+  font-size: 1.2rem;
   position: relative;
   right: 1rem;
 }
 
-.row:not(.row--labels) .item--rainfall {
-  font-size: 1.2rem;
-}
-
-.row--labels .item--day span,
 .item--day .weekday,
 .item--day .date,
 .item--hour .hour {
@@ -181,6 +160,14 @@ main {
   width: 100%;
 }
 
+.location-button-container {
+  position: fixed;
+  right: 3rem;
+  bottom: 8rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .source-buttons {
   background-color: #fff;
   display: flex;
@@ -189,36 +176,68 @@ main {
   padding: 2px;
 }
 
-.source-button {
+.button--source + .button--source { margin-left: 2px; }
+
+.button--combo {
+  flex-grow: 2;
+}
+
+
+/******************** BUTTONS ********************/
+.button {
   background-color: #ddd;
   border: 0;
-  border-radius: 4px;
   color: #bbb;
   cursor: pointer;
-  font-size: 3rem;
-  font-size: 2rem;
-  font-weight: 800;
-  flex-grow: 1;
-  padding: 6rem 0;
-  padding: 2rem 0;
-  position: relative;
   outline: 0;
 }
 
-.source-button + .source-button { margin-left: 2px; }
-
-.source-button:active {
+.button:active {
   transform: scale(0.9);
 }
 
-.source-button:hover,
-.source-button.selected {
+.button:hover,
+.button.selected {
   background-color: #ccc;
   color: #888;
 }
 
-.source-button.done:before,
-.source-button.error:before {
+.button--location {
+  border-radius: 100rem;
+  box-shadow: 0 20px 36px -17px rgba(0,0,0,0.6);
+  width: 8rem;
+  height: 8rem;
+
+  /* do cool drop shadow maybe */
+}
+
+.button--location span {
+  background-image: url(./images/icon-pin.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 35%;
+  display: block;
+  height: 100%;
+  opacity: 0.3;
+}
+
+.button--source {
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  flex-grow: 1;
+  height: 5rem;
+  position: relative;
+}
+
+.button--combo {
+  font-size: 2rem;
+}
+
+
+/******************** STATUS ********************/
+.button--source.done:before,
+.button--source.error:before {
   content: '';
   border-radius: 1000px;
   position: absolute;
@@ -243,29 +262,26 @@ main {
   }
 }
 
-.source-button.done:before {
+.button--source.done:before {
   background-color: #20c36a94;
   animation-iteration-count: 2;
   animation-direction: alternate;
 }
 
-.source-button.error:before {
+.button--source.error:before {
   background-color: #ea4c277a;
 }
 
-.source-button--combo {
-  flex-grow: 2;
-}
-
-/******************** AJAX LOADER ********************/
-#ajax-loader {
+/******************** LOADING SPINNER ********************/
+.loading-spinner {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  text-align: center;
 }
 
-#ajax-loader > .bounce {
+.loading-spinner > .bounce {
 	background-color: #ccc;
 
 	width: 18px;
@@ -276,11 +292,11 @@ main {
 	animation: bouncedelay 1.2s infinite ease-in-out both;
 }
 
-#ajax-loader .bounce--1 {
+.loading-spinner .bounce--1 {
 	animation-delay: -0.32s;
 }
 
-#ajax-loader .bounce--2 {
+.loading-spinner .bounce--2 {
 	animation-delay: -0.16s;
 }
 
@@ -317,7 +333,11 @@ main {
 
 /******************** TABLET ********************/
 @media screen and (min-width: 768px) {
-  .row--labels .item--day span,
+  .weather-container {
+    border-top: 1px solid var(--border-color);
+    margin-top: 3rem;
+  }
+
   .item--day .weekday,
   .item--day .date,
   .item--hour .hour {
@@ -327,9 +347,24 @@ main {
   .item--rainfall {
     right: 4rem;
   }
+
+  .button--location {
+    box-shadow: 0 14px 36px -17px rgba(0,0,0,0.6);
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .button--location span {
+    background-size: 25%;
+  }
 }
 
 /******************** DESKTOP ********************/
 @media screen and (min-width: 992px) {
-
+  .location-button-container {
+    right: auto;
+    bottom: 3rem;
+    max-width: 73rem;
+    width: 100%;
+  }
 }
