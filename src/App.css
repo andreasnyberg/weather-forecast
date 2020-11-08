@@ -58,6 +58,10 @@ body {
   height: 3rem;
 }
 
+.row--night .icon {
+  opacity: 0.4;
+}
+
 /******************** ITEMS ********************/
 .items {
   display: flex;
@@ -182,7 +186,6 @@ body {
   flex-grow: 2;
 }
 
-
 /******************** BUTTONS ********************/
 .button {
   background-color: #ddd;
@@ -190,6 +193,7 @@ body {
   color: #bbb;
   cursor: pointer;
   outline: 0;
+  user-select: none;
 }
 
 .button:active {
