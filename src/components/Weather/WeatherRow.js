@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import svLocale from 'date-fns/locale/sv';
 import WeatherRowHour from './WeatherRowHour';
 import Rainfall from './WeatherElements/Rainfall';
+import Windspeed from './WeatherElements/Windspeed';
 
 class WeatherRow extends Component {
   constructor(props) {
@@ -50,9 +51,7 @@ class WeatherRow extends Component {
       tempMin
     } = this.props.data;
 
-    if (!tempMax || !tempMin) {
-      return <div className="item item--temp">-</div>;
-    }
+    if (!tempMax || !tempMin) return;
 
     return (
       <div className="item item--temp">
@@ -63,10 +62,9 @@ class WeatherRow extends Component {
   }
 
   renderRainfall() {
-    if (this.props.data.rainfall == null) { return <div className="item">-</div>; }
-
     const { rainfall } = this.props.data;
-    
+    if (rainfall == null) return;
+
     return (
       <div className="item item--rainfall">
         <Rainfall amount={rainfall} />
@@ -76,12 +74,11 @@ class WeatherRow extends Component {
 
   renderWindspeed() {
     const { windspeed } = this.props.data;
-
-    if (windspeed == null) { return <div className="item item--windspeed">-</div>; }
+    if (windspeed == null) return;
 
     return (
       <div className="item item--windspeed">
-        {windspeed}<span className="smaller">m/s</span>
+        <Windspeed amount={windspeed} />
       </div>
     );
   }

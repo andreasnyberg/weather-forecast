@@ -2,6 +2,7 @@ import React from 'react';
 import { format } from 'date-fns';
 import { isAwakeTime } from '../../helpers/misc';
 import Rainfall from './WeatherElements/Rainfall';
+import Windspeed from './WeatherElements/Windspeed';
 
 const WeatherRow = (props) => {
   const {
@@ -36,7 +37,7 @@ const WeatherRow = (props) => {
         </div>
 
         <div className="item item--windspeed">
-          {windspeed} <span className="smaller">m/s</span>
+          <Windspeed amount={windspeed} />
         </div>
       </div>
     </div>
