@@ -4,3 +4,9 @@ A seven-day forecast, based on three weather sources. Can display data both comb
 
 
 ![UI example](src/images/weather-ui.png?raw=true "Weather Forecast UI example")
+
+
+Deploy to GH Pages, from `master`:
+```
+npm run deploy
+```

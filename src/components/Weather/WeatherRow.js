@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { format } from 'date-fns';
 import svLocale from 'date-fns/locale/sv';
 import WeatherRowHour from './WeatherRowHour';
-import { renderRainfallString } from '../helpers/misc';
+import Rainfall from './WeatherElements/Rainfall';
 
 class WeatherRow extends Component {
   constructor(props) {
@@ -66,10 +66,11 @@ class WeatherRow extends Component {
     if (this.props.data.rainfall == null) { return <div className="item">-</div>; }
 
     const { rainfall } = this.props.data;
-    const rainfallString = renderRainfallString(rainfall);
-
+    
     return (
-      <div className="item item--rainfall">{rainfallString}</div>
+      <div className="item item--rainfall">
+        <Rainfall amount={rainfall} />
+      </div>
     );
   }
 

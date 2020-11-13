@@ -1,6 +1,7 @@
 import React from 'react';
 import { format } from 'date-fns';
-import { renderRainfallString, isAwakeTime } from '../helpers/misc';
+import { isAwakeTime } from '../../helpers/misc';
+import Rainfall from './WeatherElements/Rainfall';
 
 const WeatherRow = (props) => {
   const {
@@ -12,7 +13,6 @@ const WeatherRow = (props) => {
   } = props.data;
 
   const hourString = format(hour, 'HH:mm');
-  const rainfallString = renderRainfallString(rainfall);
   const iconClass = isAwakeTime(hour) ? icon : 'night';
   const rowClass = isAwakeTime(hour) ? '' : 'row--night';
 
@@ -32,7 +32,7 @@ const WeatherRow = (props) => {
 
       <div className="items">
         <div className="item item--rainfall">
-          {rainfallString}
+          <Rainfall amount={rainfall} />
         </div>
 
         <div className="item item--windspeed">
