@@ -16,10 +16,10 @@ import massageDataOwm from '../helpers/massageDataOwm';
 import massageDataDs from '../helpers/massageDataDs';
 import combineData from '../helpers/combineData';
 
-const { SHOW_ALL } = SourceFilters;
+const { SHOW_SMHI } = SourceFilters;
 const { DONE, ERROR } = SourceStatuses;
 
-export function dataSourceFilter(state = SHOW_ALL, action) {
+export function dataSourceFilter(state = SHOW_SMHI, action) {
   switch (action.type) {
     case SET_DATA_SOURCE_FILTER:
       return action.filter

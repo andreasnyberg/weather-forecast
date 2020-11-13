@@ -1,4 +1,4 @@
-import { isSameDay } from 'date-fns';
+import { isSameDay, isAfter } from 'date-fns';
 import { iconsDs } from './icons';
 import { roundAndValidate, isObjectEmpty, sevenDaysFromToday } from './misc';
 
@@ -11,6 +11,7 @@ const massageDataDs = (data) => (
     // ********** HOUR DATA **********
     const hours = data.hourly.data
       .filter(item => isSameDay(currentDate, new Date(item.time * 1000)))
+      .filter(item => isAfter(new Date(item.time * 1000), new Date()))
       .map(currentHour => {
         const icon = currentHour.icon;
         const temp = currentHour.temperature;

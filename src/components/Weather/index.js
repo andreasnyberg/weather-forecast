@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { SourceFilters } from '../../actions/types';
 import LoadingSpinner from '../LoadingSpinner';
 import WeatherRow from './WeatherRow';
-import { renderRainfallString } from '../../helpers/misc';
+import Rainfall from './WeatherElements/Rainfall';
+import Windspeed from './WeatherElements/Windspeed';
 
 class Weather extends Component {
   componentWillReceiveProps(nextProps) {
@@ -38,26 +39,28 @@ class Weather extends Component {
 
   renderRightNow(data) {
     const rightNowData = data[0].hours[0];
-    const { rainfall, windspeed } = rightNowData;
-    const rainfallString = renderRainfallString(rainfall);
+    const { icon, temp, rainfall, windspeed } = rightNowData;
 
-    //console.log(rightNowData);
     return (
       <section className="right-now">
-        {/* 
-        <div className="right-now-top">
-          <div className="item item--icon">
-            <span className={`icon icon--${icon}`} />
-            ikon
+        
+        <div className="rn-top">
+          <div className="rn-item--icon">
+            <div className={`icon icon--${icon}`} />
           </div>
 
-          <div>degrees.</div>
-        </div>*/}
+          <div className="rn-item--temp">
+            {temp}&#176;
+          </div>
+        </div>
         
-        <div className="right-now-bottom">
-          <div className="item item--rainfall">{rainfallString}</div>
-          <div className="item item--windspeed">
-            {windspeed}<span className="smaller">m/s</span>
+        <div className="rn-bottom">
+          <div className="rn-item--rainfall">
+            <Rainfall amount={rainfall} />
+          </div>
+
+          <div>
+            <Windspeed amount={windspeed} />
           </div>
         </div>
       </section>
@@ -81,7 +84,7 @@ class Weather extends Component {
 
     return (
       <main className="weather-container">
-        {/* { this.renderRightNow(data) } */}
+        { this.renderRightNow(data) }
         { this.renderRows(data) }
       </main>
     );

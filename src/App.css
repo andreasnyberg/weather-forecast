@@ -23,17 +23,71 @@ body {
   position: relative;
 }
 
-.weather-container {
-  border-left: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
+.smaller {
+  font-size: 1rem;
 }
 
+.weather-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/******************** RIGHT NOW ********************/
+.right-now {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  width: 60%;
+}
+
+.rn-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8rem;
+}
+
+.rn-bottom {
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+  padding: 1.5rem 0;
+  width: 100%;
+}
+
+.rn-item--icon {
+  height: 100%;
+  width: 7rem;
+}
+
+.rn-item--temp {
+  font-size: 6rem;
+}
+
+.rn-item--rainfall {
+  font-size: 1.4rem;
+}
+
+
+
 /******************** ROWS ********************/
+.rows {
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  width: 100%;
+}
+
 .row {
   border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   height: 6rem;
+}
+
+.row--day:first-child {
+  border-top: 1px solid var(--border-color);
 }
 
 .row--day {
@@ -112,6 +166,7 @@ body {
 
 .item--icon {
   justify-content: center;
+  height: 100%;
 }
 
 .item--temp {
@@ -126,9 +181,7 @@ body {
 }
 
 .item--windspeed .smaller {
-  font-size: 1rem;
   margin-left: 0.2rem;
-  margin-right: 0.5rem;
 }
 
 .temp--max,
@@ -158,29 +211,34 @@ body {
 
 /******************** FOOTER ********************/
 .footer {
+  background-color: #fff;
+  box-shadow: 0 35px 20px 25px rgba(0,0,0,0.3);
   position: fixed;
+  left: 0;
   bottom: 0;
-  max-width: var(--container-width);
+  /* max-width: var(--container-width); */
   width: 100%;
 }
 
 .location-button-container {
   position: fixed;
-  right: 3rem;
-  bottom: 8rem;
+  right: 2rem;
+  bottom: 7rem;
   display: flex;
   justify-content: flex-end;
 }
 
 .source-buttons {
-  background-color: #fff;
+  box-sizing: border-box;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 2px;
+  margin: auto;
+  padding: 3px;
+  max-width: var(--container-width);
 }
 
-.button--source + .button--source { margin-left: 2px; }
+.button--source + .button--source { margin-left: 3px; }
 
 .button--combo {
   flex-grow: 2;
@@ -315,9 +373,6 @@ body {
 }
 
 /******************** ICONS ********************/
-.item--icon {
-  height: 100%;
-}
 .icon {
   background-repeat: no-repeat;
   background-position: center;
@@ -340,7 +395,6 @@ body {
 /******************** TABLET ********************/
 @media screen and (min-width: 768px) {
   .weather-container {
-    border-top: 1px solid var(--border-color);
     margin-top: 3rem;
   }
 
@@ -354,6 +408,10 @@ body {
     right: 4rem;
   }
 
+  .location-button-container {
+    bottom: 9rem;
+  }
+
   .button--location {
     box-shadow: 0 14px 36px -17px rgba(0,0,0,0.6);
     width: 12rem;
@@ -363,13 +421,19 @@ body {
   .button--location span {
     background-size: 25%;
   }
+
+  .source-buttons {
+    padding: 10px 6px;
+  }
+  
+  .button--source + .button--source { margin-left: 6px; }
 }
 
 /******************** DESKTOP ********************/
 @media screen and (min-width: 992px) {
   .location-button-container {
     right: auto;
-    bottom: 3rem;
+    bottom: 10rem;
     max-width: 73rem;
     width: 100%;
   }
