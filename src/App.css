@@ -23,8 +23,33 @@ body {
   position: relative;
 }
 
+.row-baseline {
+  display: flex;
+  align-items: baseline;
+}
+
+.rainfall-text {
+  display: flex;
+  align-items: center;
+}
+
+.rainfall-text--amount {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-left: 0.4rem;
+  margin-right: 0.2rem;
+}
+
+.windspeed-amount {
+  font-size: 2rem;
+  font-style: italic;
+  margin-right: 0.3rem;
+}
+
 .smaller {
-  font-size: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .weather-container {
@@ -63,13 +88,17 @@ body {
 }
 
 .rn-item--temp {
+  color: #666;
   font-size: 6rem;
+}
+
+.rn-item--temp-number {
+  font-weight: 600;
 }
 
 .rn-item--rainfall {
   font-size: 1.4rem;
 }
-
 
 
 /******************** ROWS ********************/
@@ -178,10 +207,6 @@ body {
 .item--windspeed {
   align-items: baseline;
   flex-basis: 50%;
-}
-
-.item--windspeed .smaller {
-  margin-left: 0.2rem;
 }
 
 .temp--max,

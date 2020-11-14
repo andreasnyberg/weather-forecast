@@ -46,20 +46,28 @@ export const isObjectEmpty = (obj) => {
   return Object.entries(obj).length === 0 && obj.constructor === Object;
 }
 
-export const renderRainfallString = (value) => {
+export const getRainfallCode = (value) => {
   if (value == null) {
-    return '-';
+    return 0;
   } else if (value === 0 || value < 0.01) {
-    return 'Uppehåll';
+    return 1;
   } else if (value < 0.2) {
-    return '< 0,2 mm';
+    return 2;
   } else if (value >= 0.2 && value < 1) {
-    return '0,2 - 1 mm';
+    return 3;
   } else if (value >= 1 && value <= 2) {
-    return '1 - 2 mm';
+    return 4;
   } else {
-    return '> 2 mm';
+    return 5;
   }
+}
+
+export const getRoundedRainfallAmount = (code) => {
+  if (code === 1) return '0';
+  if (code === 2) return '0,2';
+  if (code === 3) return '0,2 - 1';
+  if (code === 4) return '1 - 2';
+  if (code === 5) return '2';
 }
 
 const today = new Date();

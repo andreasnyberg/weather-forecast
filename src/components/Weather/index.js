@@ -38,19 +38,20 @@ class Weather extends Component {
   }
 
   renderRightNow(data) {
-    const rightNowData = data[0].hours[0];
+    // If current time is near 23:59, we might not have any hour data.
+    const firstDayWHourData = data.find(day => day.hasOwnProperty('hours'));
+    const rightNowData = firstDayWHourData.hours[0];
     const { icon, temp, rainfall, windspeed } = rightNowData;
 
     return (
       <section className="right-now">
-        
         <div className="rn-top">
           <div className="rn-item--icon">
             <div className={`icon icon--${icon}`} />
           </div>
 
           <div className="rn-item--temp">
-            {temp}&#176;
+            <span className="rn-item--temp-number">{temp}</span>&#176;
           </div>
         </div>
         

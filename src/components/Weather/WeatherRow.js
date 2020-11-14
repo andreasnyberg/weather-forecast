@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { format } from 'date-fns';
 import svLocale from 'date-fns/locale/sv';
+import { isAwakeTime } from '../../helpers/misc';
 import WeatherRowHour from './WeatherRowHour';
 import Rainfall from './WeatherElements/Rainfall';
 import Windspeed from './WeatherElements/Windspeed';
@@ -36,7 +37,8 @@ class WeatherRow extends Component {
   }
 
   renderIcon() {
-    const { icon } = this.props.data;
+    let { icon } = this.props.data;
+    if (!icon && !isAwakeTime(new Date())) icon = 'night';
 
     return (
       <div className="item item--icon">
@@ -51,7 +53,7 @@ class WeatherRow extends Component {
       tempMin
     } = this.props.data;
 
-    if (!tempMax || !tempMin) return;
+    if (!tempMax || !tempMin) return <div className="item item--temp" />;
 
     return (
       <div className="item item--temp">
@@ -63,7 +65,7 @@ class WeatherRow extends Component {
 
   renderRainfall() {
     const { rainfall } = this.props.data;
-    if (rainfall == null) return;
+    if (rainfall == null) return <div className="item item--rainfall" />;
 
     return (
       <div className="item item--rainfall">
@@ -74,7 +76,7 @@ class WeatherRow extends Component {
 
   renderWindspeed() {
     const { windspeed } = this.props.data;
-    if (windspeed == null) return;
+    if (windspeed == null) return <div className="item item--windspeed" />;
 
     return (
       <div className="item item--windspeed">
