@@ -31,14 +31,9 @@ const WeatherRow = (props) => {
         {temp}&#176;
       </div>
 
-      <div className="items">
-        <div className="item item--rainfall">
-          <Rainfall amount={rainfall} />
-        </div>
-
-        <div className="item item--windspeed">
-          <Windspeed amount={windspeed} />
-        </div>
+      <div className="item item--rainfall-and-windspeed">
+        <Rainfall amount={rainfall} />
+        <Windspeed amount={windspeed} />
       </div>
     </div>
   );

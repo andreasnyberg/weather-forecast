@@ -28,28 +28,26 @@ body {
   align-items: baseline;
 }
 
-.rainfall-text {
-  display: flex;
-  align-items: center;
+.rainfall-text--arrow {
+  font-size: 0.8rem;
 }
 
 .rainfall-text--amount {
   font-size: 1.2rem;
   font-weight: 600;
   margin-left: 0.4rem;
-  margin-right: 0.2rem;
 }
 
 .windspeed-amount {
   font-size: 2rem;
   font-style: italic;
-  margin-right: 0.3rem;
 }
 
 .smaller {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: 600;
   font-style: normal;
+  margin-left: 0.2rem;
 }
 
 .weather-container {
@@ -88,12 +86,11 @@ body {
 }
 
 .rn-item--temp {
-  color: #666;
-  font-size: 6rem;
+  font-size: 7rem;
 }
 
 .rn-item--temp-number {
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .rn-item--rainfall {
@@ -146,13 +143,6 @@ body {
 }
 
 /******************** ITEMS ********************/
-.items {
-  display: flex;
-  align-items: baseline;
-  flex-basis: 120%;
-  padding-bottom: 0.2rem;
-}
-
 .item {
   display: flex;
   align-items: center;
@@ -163,13 +153,6 @@ body {
   flex-direction: column;
   align-items: start;
   justify-content: center;
-}
-
-.item--rainfall {
-  justify-content: flex-end;
-  font-size: 1.2rem;
-  position: relative;
-  right: 1rem;
 }
 
 .item--day .weekday,
@@ -204,11 +187,6 @@ body {
   flex-basis: 120%;
 }
 
-.item--windspeed {
-  align-items: baseline;
-  flex-basis: 50%;
-}
-
 .temp--max,
 .temp--min {
   font-size: 2.2rem;
@@ -232,7 +210,17 @@ body {
   justify-content: flex-start;
 }
 
+.item--rainfall-and-windspeed {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  flex-basis: 120%;
+  padding-right: 0.8rem;
+}
 
+.item--rainfall-and-windspeed .windspeed-amount {
+  margin-left: 1rem;
+}
 
 /******************** FOOTER ********************/
 .footer {
@@ -419,8 +407,18 @@ body {
 
 /******************** TABLET ********************/
 @media screen and (min-width: 768px) {
+  .rn-bottom {
+    width: 60%;
+    margin: auto;
+}
+
   .weather-container {
     margin-top: 3rem;
+  }
+
+  .smaller {
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
   }
 
   .item--day .weekday,
@@ -429,8 +427,12 @@ body {
     padding-left: 2rem;
   }
 
-  .item--rainfall {
-    right: 4rem;
+  .item--rainfall-and-windspeed {
+    padding-right: 2rem;
+  }
+
+  .item--rainfall-and-windspeed .windspeed-amount {
+    margin-left: 3rem;
   }
 
   .location-button-container {

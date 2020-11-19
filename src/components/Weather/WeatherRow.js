@@ -62,27 +62,16 @@ class WeatherRow extends Component {
       </div>
     );
   }
-
-  renderRainfall() {
-    const { rainfall } = this.props.data;
-    if (rainfall == null) return <div className="item item--rainfall" />;
+  
+  renderRainfallAndWindspeed() {
+    const { rainfall, windspeed } = this.props.data;
 
     return (
-      <div className="item item--rainfall">
+      <div className="item item--rainfall-and-windspeed">
         <Rainfall amount={rainfall} />
-      </div>
-    );
-  }
-
-  renderWindspeed() {
-    const { windspeed } = this.props.data;
-    if (windspeed == null) return <div className="item item--windspeed" />;
-
-    return (
-      <div className="item item--windspeed">
         <Windspeed amount={windspeed} />
       </div>
-    );
+    )
   }
 
   renderWeatherRowHours() {
@@ -99,10 +88,7 @@ class WeatherRow extends Component {
           { this.renderDate() }
           { this.renderIcon() }
           { this.renderTemperature() }
-          <div className="items">
-            { this.renderRainfall() }
-            { this.renderWindspeed() }
-          </div>
+          { this.renderRainfallAndWindspeed() }
         </div>
 
         {this.state.isOpen &&
