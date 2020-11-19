@@ -47,18 +47,22 @@ class WeatherRow extends Component {
     );
   }
 
-  renderTemperature() {
+  renderTemperatures() {
     const {
       tempMax,
       tempMin
     } = this.props.data;
 
-    if (!tempMax || !tempMin) return <div className="item item--temp" />;
+    const renderTemperature = temp => {
+      if (temp == null) return null;
+
+      return <span>{temp}&#176;</span>;
+    }
 
     return (
       <div className="item item--temp">
-        <div className="temp--max"><span>{tempMax}&#176;</span></div>
-        <div className="temp--min"><span>{tempMin}&#176;</span></div>
+        <div className="temp--max">{renderTemperature(tempMax)}</div>
+        <div className="temp--min">{renderTemperature(tempMin)}</div>
       </div>
     );
   }
@@ -87,7 +91,7 @@ class WeatherRow extends Component {
         <div className="row row--day" onClick={this.handleRowClick}>
           { this.renderDate() }
           { this.renderIcon() }
-          { this.renderTemperature() }
+          { this.renderTemperatures() }
           { this.renderRainfallAndWindspeed() }
         </div>
 
