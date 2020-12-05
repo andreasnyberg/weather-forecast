@@ -36,7 +36,8 @@ const massageDataOwm = (data) => (
     // ********** ICON **********
     const icons = hours
                     .filter(item => isCenterOfDayTime(item.hour))
-                    .map(item => item.icon);
+                    .map(item => item.icon)
+                    .filter(icon => icon !== 'night');
 
     // ********** TEMPERATURE **********
     const temps = todayData
