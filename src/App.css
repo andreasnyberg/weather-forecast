@@ -59,7 +59,7 @@ body {
 
 /******************** RIGHT NOW ********************/
 .right-now {
-  margin-top: 1rem;
+  margin-top: 3rem;
   margin-bottom: 3rem;
   width: 60%;
 }
@@ -100,8 +100,7 @@ body {
 
 /******************** ROWS ********************/
 .rows {
-  border-left: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
+  box-sizing: border-box;
   width: 100%;
 }
 
@@ -118,6 +117,7 @@ body {
 
 .row--day {
   cursor: pointer;
+  padding: 0 1.2rem;
 }
 
 .row--day:hover {
@@ -142,6 +142,9 @@ body {
   opacity: 0.4;
 }
 
+.row--hour .hour { padding-left: 0.8rem; }
+.row--hour .item--rainfall-and-windspeed { padding-right: 0.8rem; }
+
 /******************** ITEMS ********************/
 .item {
   display: flex;
@@ -153,12 +156,6 @@ body {
   flex-direction: column;
   align-items: start;
   justify-content: center;
-}
-
-.item--day .weekday,
-.item--day .date,
-.item--hour .hour {
-  padding-left: 0.8rem;
 }
 
 .item--day .weekday {
@@ -215,7 +212,6 @@ body {
   align-items: baseline;
   justify-content: flex-end;
   flex-basis: 120%;
-  padding-right: 0.8rem;
 }
 
 .item--rainfall-and-windspeed .windspeed-amount {
@@ -419,16 +415,6 @@ body {
   .smaller {
     font-size: 0.8rem;
     margin-left: 0.3rem;
-  }
-
-  .item--day .weekday,
-  .item--day .date,
-  .item--hour .hour {
-    padding-left: 2rem;
-  }
-
-  .item--rainfall-and-windspeed {
-    padding-right: 2rem;
   }
 
   .item--rainfall-and-windspeed .windspeed-amount {
