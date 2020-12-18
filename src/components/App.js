@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import '../App.css';
 import WeatherContainer from '../containers/WeatherContainer';
 import Footer from './Footer';
-import LocationButton from './LocationButton';
+import UpdateButtons from './UpdateButtons';
 
 class App extends Component {
   constructor(props) {
     super(props);
   
     this.handleGetLocation = this.handleGetLocation.bind(this);
+    this.handleRefresh = this.handleRefresh.bind(this);
   }
 
   componentDidMount() {
@@ -21,16 +22,12 @@ class App extends Component {
       fetchWeatherSmhi,
       fetchWeatherOwm,
       fetchWeatherDs,
-      clearAllData
+      clearOldData
     } = this.props;
     const lat = localStorage.getItem('lat') || '59.3293'; // Stockholm as default.
     const lon = localStorage.getItem('lon') || '18.0686'; // Stockholm as default.
-    const appHasData = weatherData.combo.status !== null;
-
-    if (appHasData) {
-      clearAllData();
-    }
     
+    clearOldData();
     fetchWeatherSmhi(lat, lon);
     fetchWeatherOwm(lat, lon);
     fetchWeatherDs(lat, lon);
@@ -56,11 +53,20 @@ class App extends Component {
     }
   }
 
+  handleRefresh() {
+    this.fetchData();
+  }
+
   render() {
     return (
       <div className="App">
         <WeatherContainer />
-        <LocationButton onGetLocation={this.handleGetLocation} />
+
+        <UpdateButtons 
+          onGetLocation={this.handleGetLocation}
+          onRefresh={this.handleRefresh}
+        />
+
         <Footer />
       </div>
     );

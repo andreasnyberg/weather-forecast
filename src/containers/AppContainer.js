@@ -4,7 +4,7 @@ import {
   fetchWeatherSmhi,
   fetchWeatherOwm,
   fetchWeatherDs,
-  clearAllData,
+  clearOldData,
 } from '../actions';
 import App from '../components/App';
 
@@ -17,7 +17,7 @@ function mapDispatchToProps(dispatch) {
     fetchWeatherSmhi,
     fetchWeatherOwm,
     fetchWeatherDs,
-    clearAllData,
+    clearOldData,
   }, dispatch);
 }
 

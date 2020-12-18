@@ -111,7 +111,7 @@ export function combineAllData() {
   };
 }
 
-export function clearAllData() {
+export function clearOldData() {
   return {
     type: CLEAR_ALL_DATA
   }
