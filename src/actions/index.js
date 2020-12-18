@@ -1,7 +1,4 @@
 import {
-  FETCH_DATA_SMHI,
-  FETCH_DATA_OWM,
-  FETCH_DATA_DS,
   MASSAGE_DATA_SMHI,
   MASSAGE_DATA_OWM,
   MASSAGE_DATA_DS,
@@ -12,7 +9,10 @@ import {
   API_ERROR_SMHI,
   API_ERROR_OWM,
   API_ERROR_DS,
+  SourceLabels,
 } from './types';
+
+const { smhi, owm, ds } = SourceLabels;
 
 // action creators
 export function setDataSourceFilter(filter) {
@@ -30,7 +30,7 @@ export function fetchWeatherSmhi(lt, ln) {
     url: `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`,
     onSuccess: massageDataSmhi,
     onFailure: () => ({ type: API_ERROR_SMHI }),
-    label: FETCH_DATA_SMHI
+    label: smhi
   });
 }
 
@@ -42,7 +42,7 @@ export function fetchWeatherOwm(lat, lon) {
     url,
     onSuccess: massageDataOwm,
     onFailure: () => ({ type: API_ERROR_OWM }),
-    label: FETCH_DATA_OWM
+    label: owm
   });
 }
 
@@ -55,7 +55,7 @@ export function fetchWeatherDs(lat, lon) {
     url,
     onSuccess: massageDataDs,
     onFailure: () => ({ type: API_ERROR_DS }),
-    label: FETCH_DATA_DS,
+    label: ds,
   });
 }
 

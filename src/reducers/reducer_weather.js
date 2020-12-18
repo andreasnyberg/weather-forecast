@@ -1,4 +1,5 @@
 import {
+  API_START,
   API_ERROR_SMHI,
   API_ERROR_OWM,
   API_ERROR_DS,
@@ -9,7 +10,8 @@ import {
   CLEAR_ALL_DATA,
   SET_DATA_SOURCE_FILTER,
   SourceFilters,
-  SourceStatuses
+  SourceStatuses,
+  SourceLabels
 } from '../actions/types';
 import massageDataSmhi from '../helpers/massageDataSmhi';
 import massageDataOwm from '../helpers/massageDataOwm';
@@ -17,7 +19,7 @@ import massageDataDs from '../helpers/massageDataDs';
 import combineData from '../helpers/combineData';
 
 const { SHOW_ALL } = SourceFilters;
-const { DONE, ERROR } = SourceStatuses;
+const { DONE, PENDING, ERROR } = SourceStatuses;
 
 export function dataSourceFilter(state = SHOW_ALL, action) {
   switch (action.type) {
@@ -49,6 +51,16 @@ const initialState = {
 
 export function weatherData(state = initialState, action) {
   switch(action.type) {
+    case API_START:
+      const label = SourceLabels[action.payload];
+
+			return {
+        ...state,
+        [label]: {
+          ...state[label],
+          status: PENDING
+        },
+      };
     case MASSAGE_DATA_SMHI:
 			return {
         ...state,

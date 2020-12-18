@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { SourceFilters } from '../../actions/types';
+import { SourceFilters, SourceStatuses } from '../../actions/types';
 import LoadingSpinner from '../LoadingSpinner';
 import WeatherRow from './WeatherRow';
 import Rainfall from './WeatherElements/Rainfall';
 import Windspeed from './WeatherElements/Windspeed';
 
-class Weather extends Component {
+class Weather extends Component {  
   componentWillReceiveProps(nextProps) {
     const { smhi, owm, ds, combo } = nextProps.weatherData;
 
-    if (!combo.data.length && (smhi.status !== null && owm.status !== null && ds.status !== null)) {
+    if (!combo.data.length && (
+        smhi.status === SourceStatuses.DONE &&
+        owm.status === SourceStatuses.DONE &&
+        ds.status === SourceStatuses.DONE)
+      ) {
       this.props.combineAllData();
     }
   }

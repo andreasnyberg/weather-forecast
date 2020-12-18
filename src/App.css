@@ -309,20 +309,6 @@ body {
 
 
 /******************** STATUS ********************/
-.button--source.done:before,
-.button--source.error:before {
-  content: '';
-  border-radius: 1000px;
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  top: 10px;
-  right: 10px;
-
-  animation: status-animation 1.3s;
-	animation-fill-mode: forwards;
-}
-
 @keyframes status-animation {
   0% {
     opacity: 0;
@@ -334,6 +320,33 @@ body {
     transform: scale(1);
   }
 }
+@keyframes status-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.7); }
+}
+
+.button--source.done:before,
+.button--source.error:before,
+.button--source.pending:before {
+  content: '';
+  border-radius: 1000px;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 10px;
+  right: 10px;
+}
+
+.button--source.done:before,
+.button--source.error:before {
+  animation: status-animation 1.3s forwards;
+}
+
+.button--source.pending:before {
+  animation:
+    status-animation 1.3s forwards,
+    status-pulse 0.8s infinite ease-in-out 0.3s;
+}
 
 .button--source.done:before {
   background-color: #20c36a94;
@@ -343,6 +356,10 @@ body {
 
 .button--source.error:before {
   background-color: #ea4c277a;
+}
+
+.button--source.pending:before {
+  background-color: #bbb;
 }
 
 /******************** LOADING SPINNER ********************/

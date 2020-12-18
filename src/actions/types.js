@@ -27,5 +27,12 @@ export const SourceFilters = {
 
 export const SourceStatuses = {
   DONE: 'DONE',
+  PENDING: 'PENDING',
   ERROR: 'ERROR'
+}
+
+export const SourceLabels = {
+  smhi: 'smhi',
+  owm: 'owm',
+  ds: 'ds',
 }
