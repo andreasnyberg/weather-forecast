@@ -11,7 +11,9 @@ const combineData = (dataSmhi, dataOwm, dataDs) => {
 
   return sevenDaysFromToday.map(day => {
     const allHoursWithData = [];
-    const icons = data.map(src => src.find(x => isSameDay(x.date, day)).icon);
+    const icons = data
+      .map(src => src.find(x => isSameDay(x.date, day)).icon)
+      .filter(icon => (typeof icon !== 'undefined'));
     const tempMins = data.map(src => src.find(x => isSameDay(x.date, day)).tempMin);
     const tempMaxs = data.map(src => src.find(x => isSameDay(x.date, day)).tempMax);
     const rainfalls = data.map(src => src.find(x => isSameDay(x.date, day)).rainfall);

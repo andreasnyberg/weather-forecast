@@ -88,7 +88,10 @@ class WeatherRow extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="row row--day" onClick={this.handleRowClick}>
+        <div
+          className={`row row--day ${this.state.isOpen ? 'is-open' : ''}`}
+          onClick={ this.handleRowClick }
+        >
           { this.renderDate() }
           { this.renderIcon() }
           { this.renderTemperatures() }

@@ -63,11 +63,11 @@ export const getRainfallCode = (value) => {
 }
 
 export const getRoundedRainfallAmount = (code) => {
-  if (code === 1) return '0';
-  if (code === 2) return '0,2';
-  if (code === 3) return '0,2 - 1';
-  if (code === 4) return '1 - 2';
-  if (code === 5) return '2';
+  if (code === 1) return ['0'];
+  if (code === 2) return ['0,2'];
+  if (code === 3) return ['0,2', '1'];
+  if (code === 4) return ['1', '2'];
+  if (code === 5) return ['2'];
 }
 
 const today = new Date();
