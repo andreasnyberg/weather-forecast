@@ -1,13 +1,15 @@
 import { getAverage, getAverageNoRound, sevenDaysFromToday, range, findMostFrequentIcon } from './misc';
 import { isSameDay, getHours } from 'date-fns';
 
-const combineData = (dataSmhi, dataOwm, dataDs) => {
+const combineData = (data) => {
   const allHours = range(0, 23, 1);
-  let data = [];
+  // let data = [];
 
-  if (dataSmhi.length) data.push(dataSmhi);
-  if (dataOwm.length) data.push(dataOwm);
-  if (dataDs.length) data.push(dataDs);
+  // if (dataSmhi.length) data.push(dataSmhi);
+  // if (dataOwm.length) data.push(dataOwm);
+  // if (dataDs.length) data.push(dataDs);
+
+  // console.log(data);
 
   return sevenDaysFromToday.map(day => {
     const allHoursWithData = [];

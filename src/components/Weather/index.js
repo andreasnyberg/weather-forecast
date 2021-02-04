@@ -1,20 +1,53 @@
 import React, { Component } from 'react';
 import { SourceFilters, SourceStatuses } from '../../actions/types';
+import { isDone } from '../../helpers/misc';
 import LoadingSpinner from '../LoadingSpinner';
 import WeatherRow from './WeatherRow';
 import Rainfall from './WeatherElements/Rainfall';
 import Windspeed from './WeatherElements/Windspeed';
 
-class Weather extends Component {  
+class Weather extends Component { 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      timerIsActive: false,
+    };
+
+    this.handleTimerStop = this.handleTimerStop.bind(this);
+  }
+
   componentWillReceiveProps(nextProps) {
     const { smhi, owm, ds, combo } = nextProps.weatherData;
 
-    if (!combo.data.length && (
-        smhi.status === SourceStatuses.DONE &&
-        owm.status === SourceStatuses.DONE &&
-        ds.status === SourceStatuses.DONE)
-      ) {
-      this.props.combineAllData();
+    if (!isDone(combo)) {
+
+      if (!this.state.timerIsActive) {
+        this.handleTimerStart();
+      }
+
+      if ([smhi, owm, ds].every(isDone)) {
+        this.props.combineData(['smhi', 'owm', 'ds']);
+      }
+    }    
+  }
+
+  handleTimerStart() {
+    this.setState({ timerIsActive: true });
+    setTimeout(this.handleTimerStop, 1000);
+  }
+
+  handleTimerStop() {
+    this.setState({ timerIsActive: false });
+    this.combineDoneData();
+  }
+
+  combineDoneData() {
+    const { weatherData } = this.props;
+    const doneSourcesLabels = Object.keys(weatherData).filter(key => weatherData[key].status === SourceStatuses.DONE);
+
+    if (!isDone(weatherData.combo) && doneSourcesLabels.length > 1) {
+      this.props.combineData(doneSourcesLabels);
     }
   }
 

@@ -6,7 +6,7 @@ import {
   MASSAGE_DATA_SMHI,
   MASSAGE_DATA_OWM,
   MASSAGE_DATA_DS,
-  COMBINE_ALL_DATA,
+  COMBINE_DATA,
   CLEAR_ALL_DATA,
   SET_DATA_SOURCE_FILTER,
   SourceFilters,
@@ -85,11 +85,13 @@ export function weatherData(state = initialState, action) {
           status: DONE
         }
       };
-    case COMBINE_ALL_DATA:
+    case COMBINE_DATA:
+      const data = action.payload.map(label => state[label].data);
+      
 			return {
         ...state,
         combo: {
-          data: combineData(state.smhi.data, state.owm.data, state.ds.data),
+          data: combineData(data),
           status: DONE
         }
       };

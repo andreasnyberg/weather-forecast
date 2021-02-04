@@ -2,7 +2,7 @@ import {
   MASSAGE_DATA_SMHI,
   MASSAGE_DATA_OWM,
   MASSAGE_DATA_DS,
-  COMBINE_ALL_DATA,
+  COMBINE_DATA,
   CLEAR_ALL_DATA,
   SET_DATA_SOURCE_FILTER,
   API,
@@ -105,9 +105,10 @@ function apiAction({
   };
 }
 
-export function combineAllData() {
+export function combineData(doneLabels) {
   return {
-    type: COMBINE_ALL_DATA
+    type: COMBINE_DATA,
+    payload: doneLabels
   };
 }
 

@@ -18,7 +18,6 @@ class App extends Component {
 
   fetchData() {
     const {
-      weatherData,
       fetchWeatherSmhi,
       fetchWeatherOwm,
       fetchWeatherDs,

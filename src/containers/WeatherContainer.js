@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { combineAllData } from '../actions';
+import { combineData } from '../actions';
 import Weather from '../components/Weather';
 
 function mapStateToProps(state) {
@@ -9,7 +9,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-    combineAllData
+    combineData
   }, dispatch);
 }
 

@@ -282,7 +282,6 @@ body {
   color: #888;
 }
 
-
 .button--round {
   border-radius: 100rem;
   box-shadow: 0 20px 36px -17px rgba(0,0,0,0.6);
@@ -470,7 +469,7 @@ body {
   }
 
   .button--location { bottom: 12rem; }
-  .button--refresh { bottom: 0; }
+  .button--refresh { bottom: 1rem; }
 
   .button--location span { background-size: 25%; }
   .button--refresh span { background-size: 35%; }
@@ -496,11 +495,12 @@ body {
   }
 
   .button--round {
-    width: 12rem;
-    height: 12rem;
+    width: 10rem;
+    height: 10rem;
   }
 
-  .button--location { bottom: 14rem; }
+  .button--location { bottom: 12rem; }
+  .button--refresh { bottom: 0; }
 }
 
 /******************** IPHONE X ********************/

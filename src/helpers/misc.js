@@ -1,4 +1,5 @@
 import { getHours, eachDay, addDays } from 'date-fns';
+import { SourceStatuses } from '..//actions/types';
 
 const reducer = (total, currentValue) => total + currentValue;
 const isMinusZero = (value) => 1/value === -Infinity;
@@ -97,3 +98,5 @@ export const findMostFrequentIcon = (array) => {
 
   return mostFrequent;
 }
+
+export const isDone = item => item.status === SourceStatuses.DONE;
