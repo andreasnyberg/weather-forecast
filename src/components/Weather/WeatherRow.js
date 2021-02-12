@@ -82,20 +82,26 @@ class WeatherRow extends Component {
     const { hours } = this.props.data;
     if (!hours) return;
 
-    return hours.map((item, i) => <WeatherRowHour data={item} key={i} />);
+    return (
+      <div>
+        {hours.map((item, i) => <WeatherRowHour data={item} key={i} />)}
+      </div>
+    );
   }
 
   render() {
     return (
       <React.Fragment>
-        <div
-          className={`row row--day ${this.state.isOpen ? 'is-open' : ''}`}
-          onClick={ this.handleRowClick }
-        >
-          { this.renderDate() }
-          { this.renderIcon() }
-          { this.renderTemperatures() }
-          { this.renderRainfallAndWindspeed() }
+        <div className={`row--wrapper ${this.state.isOpen ? 'is-open' : ''}`}>
+          <div
+            className={`row row--day`}
+            onClick={ this.handleRowClick }
+          >
+            { this.renderDate() }
+            { this.renderIcon() }
+            { this.renderTemperatures() }
+            { this.renderRainfallAndWindspeed() } 
+          </div>
         </div>
 
         {this.state.isOpen &&

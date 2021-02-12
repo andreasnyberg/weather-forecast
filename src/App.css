@@ -119,17 +119,19 @@ body {
   height: 6rem;
 }
 
-.row--day:first-child {
+.row--wrapper:first-child .row--day {
   border-top: 1px solid var(--border-color);
 }
 
-.row--day {
-  background-color: #fff;
+.row--wrapper {
   cursor: pointer;
+}
+
+.row--day {
   padding: 0 1.2rem;
 }
 
-.row--day.is-open {
+.row--wrapper.is-open {
   background-color: #f3f3f3;
 }
 
@@ -442,10 +444,44 @@ body {
 @media screen and (min-width: 768px) {
   .rn-bottom {
     width: 60%;
-}
+  }
 
   .weather-container {
     margin-top: 3rem;
+  }
+
+  .row--wrapper {
+    padding: 0 2rem;
+    border-radius: 2rem;
+    margin-bottom: -1px;
+    padding-top: 1px;
+  }
+  
+  .row--wrapper.is-open {
+    background-color: var(--border-color);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .row--day {
+    padding: 0;
+  }
+
+  .row--hour {
+    background-color: var(--border-color);
+  }
+
+  .row--hour:last-of-type {
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+
+  .row--hour .hour {
+    padding-left: 2rem;
+  }
+  
+  .row--hour .item--rainfall-and-windspeed {
+    padding-right: 2rem;
   }
 
   .smaller {
@@ -483,8 +519,8 @@ body {
 
 
 @media screen and (min-width: 992px) {
-  .row--day:hover {
-    background-color: #f3f3f3;
+  .row--wrapper:hover {
+    background-color: var(--border-color);
   }
 
   .button-container {
