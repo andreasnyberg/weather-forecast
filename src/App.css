@@ -367,7 +367,7 @@ body {
 .button--source.pending:before {
   animation:
     status-animation 1.3s forwards,
-    status-pulse 0.8s infinite ease-in-out 0.3s;
+    /* status-pulse 0.8s infinite ease-in-out 0.3s; */
 }
 
 .button--source.done:before {
