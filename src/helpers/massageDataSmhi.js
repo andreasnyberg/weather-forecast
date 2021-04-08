@@ -1,5 +1,5 @@
 import SunCalc from 'suncalc';
-import { isSameDay, isBefore, isAfter } from 'date-fns';
+import { isSameDay, isBefore, isAfter, addHours } from 'date-fns';
 import { iconsSmhi } from './icons';
 import {
   getAverage,
@@ -17,8 +17,8 @@ const massageDataSmhi = (data) => {
 
   return (
     sevenDaysFromToday.map(currentDate => {
-      const todayData = data.timeSeries.filter(item => isSameDay(currentDate, item.validTime));
-      const { sunrise, sunset } = SunCalc.getTimes(currentDate, lat, lon);
+      const todayData = data.timeSeries.filter(item => isSameDay(currentDate, item.validTime));      
+      const { sunrise, sunset } = SunCalc.getTimes(addHours(currentDate, 1), lat, lon);
       
       // ********** HOUR DATA **********
       const hours = todayData.map(currentHour => {
