@@ -27,7 +27,7 @@ class Weather extends Component {
       }
 
       if ([smhi, owm, ds].every(isDone)) {
-        this.props.combineData(['smhi', 'owm', 'ds']);
+        //this.props.combineData(['smhi', 'owm', 'ds']);
       }
     }    
   }
@@ -47,7 +47,7 @@ class Weather extends Component {
     const doneSourcesLabels = Object.keys(weatherData).filter(key => weatherData[key].status === SourceStatuses.DONE);
 
     if (!isDone(weatherData.combo) && doneSourcesLabels.length > 1) {
-      this.props.combineData(doneSourcesLabels);
+      //this.props.combineData(doneSourcesLabels);
     }
   }
 
