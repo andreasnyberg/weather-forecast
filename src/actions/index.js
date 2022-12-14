@@ -47,10 +47,7 @@ export function fetchWeatherOwm(lat, lon) {
 }
 
 export function fetchWeatherDs(lat, lon) {
-  // const API_KEY_DS = 'feb9e52560791081e7761140c0d232c6';
-  // const CORSAnywhere = 'https://cors-anywhere.herokuapp.com/';
-  // const url = `${CORSAnywhere}https://api.darksky.net/forecast/${API_KEY_DS}/${lat},${lon}?units=si`;
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,precipitation,windspeed_10m&current_weather=true&windspeed_unit=ms`;
 
   return apiAction({
     url,

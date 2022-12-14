@@ -78,7 +78,14 @@ class Weather extends Component {
     // If current time is near 23:59, we might not have any hour data.
     const firstDayWHourData = data.find(day => day.hasOwnProperty('hours'));
     const rightNowData = firstDayWHourData.hours[0];
+    console.log(rightNowData);
+    if (!rightNowData) {
+      return <div>no rightNowData</div>
+    }
     const { icon, temp, rainfall, windspeed } = rightNowData;
+
+    
+
 
     return (
       <section className="right-now">
