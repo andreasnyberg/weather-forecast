@@ -38,11 +38,21 @@ const massageDataSmhi = (data) => {
         }
       });
 
+      
+
       // ********** ICON **********
-      const icons = hours
+      let icons = hours
                       .filter(item => isCenterOfDayTime(item.hour))
                       .map(item => item.icon)
-                      .filter(icon => icon !== 'night');
+                      //.filter(icon => icon !== 'night');
+
+                      // TODO gör snyggare.
+                      // TODO behövs för dom andra också.
+      const hasOtherThanNightIcons = icons.some(icon => icon !== 'night');
+
+      if (hasOtherThanNightIcons) {
+        icons = icons.filter(icon => icon !== 'night');
+      }
 
       // ********** TEMPERATURE **********
       const temps = todayData
@@ -60,6 +70,8 @@ const massageDataSmhi = (data) => {
       const windspeeds = todayData.map(item => (
         item.parameters.find(item => item.name === 'ws').values[0]
       ));
+
+      console.log(hours)
 
       return {
         date: currentDate,

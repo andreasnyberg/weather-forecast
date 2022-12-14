@@ -15,6 +15,7 @@ export const roundToOneDecimal = (value) => (
 );
 
 export const getAverage = (values, roundDefault = true) => {
+  //console.log(values)
   const valuesFilterered = values.filter(value => typeof value !== 'undefined');
   const sum = valuesFilterered.reduce(reducer);
   const average = sum / valuesFilterered.length;
@@ -72,7 +73,8 @@ export const getRoundedRainfallAmount = (code) => {
 }
 
 const today = new Date();
-export const sevenDaysFromToday = eachDay(today, addDays(today, 7));
+// TODO döp om till sixdaysfrom...
+export const sevenDaysFromToday = eachDay(today, addDays(today, 6));
 
 export const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
 

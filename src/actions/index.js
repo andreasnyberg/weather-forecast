@@ -47,7 +47,7 @@ export function fetchWeatherOwm(lat, lon) {
 }
 
 export function fetchWeatherDs(lat, lon) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,precipitation,windspeed_10m&current_weather=true&windspeed_unit=ms`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,precipitation,windspeed_10m,weathercode&timezone=CET&current_weather=true&windspeed_unit=ms`;
 
   return apiAction({
     url,
