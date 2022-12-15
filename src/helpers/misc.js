@@ -16,7 +16,6 @@ export const roundToOneDecimal = (value) => (
 );
 
 export const getAverage = (values, roundDefault = true) => {
-  //console.log(values)
   const valuesFilterered = values.filter(value => typeof value !== 'undefined');
   const sum = valuesFilterered.reduce(reducer);
   const average = sum / valuesFilterered.length;

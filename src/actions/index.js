@@ -47,10 +47,23 @@ export function fetchDataOwm(lat, lon) {
 }
 
 export function fetchDataOm(lt, ln) {
-  const lat = parseFloat(lt).toFixed(4);
-  const lon = parseFloat(ln).toFixed(4);
+  // TODO ska ej behövas egentligen? 
+  const lat = parseFloat(lt).toFixed(6);
+  const lon = parseFloat(ln).toFixed(6);
+
+  // Bad data - Kärrtorp (from API docs "Select Coordinates or City" response)
+  const testLat = '59.28531';
+  const testLon = '18.11388';
+
+  // Good data - Sthlm
+  // const testLat = '59.3293';
+  // const testLon = '18.0686';
+
+
+  // TODO coordinater från geolocation visar märklig data, typ 13 grader för varm temp. wtf. sthlms-coords visar tyyyp rätt?
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,precipitation,windspeed_10m,weathercode&timezone=auto&current_weather=true&windspeed_unit=ms`;
-  //const url = 'https://api.open-meteo.com/v1/forecast?latitude=59.3293&longitude=18.0686&hourly=temperature_2m'; // STHLM
+  //const url = `https://api.open-meteo.com/v1/forecast?latitude=${testLat}&longitude=${testLon}&hourly=temperature_2m,precipitation,windspeed_10m,weathercode&timezone=auto&current_weather=true&windspeed_unit=ms`;
+
 
   return apiAction({
     url,
@@ -114,6 +127,8 @@ export function combineData(doneLabels) {
 }
 
 export function clearOldData() {
+  localStorage.clear();
+
   return {
     type: CLEAR_ALL_DATA
   }

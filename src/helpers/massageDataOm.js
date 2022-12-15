@@ -11,6 +11,7 @@ import {
   getSunriseSunset } from './misc';
 
 const massageDataOm = (data) => {
+  console.log(data);
   console.log(data.hourly.temperature_2m);
 
   return (

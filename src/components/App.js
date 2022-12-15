@@ -32,6 +32,7 @@ class App extends Component {
     fetchDataOm(lat, lon);
   }
 
+  //TODO click op denna tar ibland extremt lång tid för nåt o hända?
   handleGetLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
