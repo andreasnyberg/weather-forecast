@@ -1,4 +1,5 @@
-import { getHours, eachDay, addDays } from 'date-fns';
+import { getHours, eachDay, addDays, addHours } from 'date-fns';
+import SunCalc from 'suncalc';
 import { SourceStatuses } from '..//actions/types';
 
 const reducer = (total, currentValue) => total + currentValue;
@@ -39,7 +40,8 @@ export const isAwakeTime = (date) => (
   getHours(date) >= 7 && getHours(date) <= 23
 );
 
-export const isCenterOfDayTime = (date) => (
+// TODO döp om till isMiddleHoursOfDay
+export const isMiddleHoursOfDay = (date) => (
   getHours(date) >= 10 && getHours(date) <= 19
 );
 
@@ -72,7 +74,8 @@ export const getRoundedRainfallAmount = (code) => {
 }
 
 const today = new Date();
-export const sevenDaysFromToday = eachDay(today, addDays(today, 7));
+// TODO döp om till sixdaysfrom...
+export const sevenDaysFromToday = eachDay(today, addDays(today, 6));
 
 export const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
 
@@ -100,3 +103,10 @@ export const findMostFrequentIcon = (array) => {
 }
 
 export const isDone = item => item.status === SourceStatuses.DONE;
+
+export const getSunriseSunset = (date) => {
+  const lat = localStorage.getItem('lat') || '59.3293'; // Stockholm as default.
+  const lon = localStorage.getItem('lon') || '18.0686'; // Stockholm as default.
+  const { sunrise, sunset } = SunCalc.getTimes(addHours(date, 1), lat, lon);
+  return { sunrise, sunset };
+}

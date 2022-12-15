@@ -65,16 +65,34 @@ export const iconsOwm = {
   '50n': 'night'
 };
 
-// https://darksky.net/dev/docs
-export const iconsDs = {
-  'clear-day': 'clear-day',
-  'clear-night': 'night',
-  'rain': 'rain',
-  'snow': 'snow',
-  'sleet': 'sleet',
-  'wind': 'cloudy',
-  'fog': 'fog',
-  'cloudy': 'cloudy',
-  'partly-cloudy-day': 'partly-cloudy-day',
-  'partly-cloudy-night': 'night'
+// https://open-meteo.com/en/docs#weather-variable-documentation
+export const iconsOM = {
+  0: 'clear-day',
+  1: 'partly-cloudy-day',
+  2: 'partly-cloudy-day',
+  3: 'partly-cloudy-day',
+  45: 'fog',
+  48: 'fog',
+  51: 'overcast',
+  53: 'overcast',
+  55: 'overcast',
+  56: 'sleet',
+  57: 'sleet',
+  61: 'rain',
+  63: 'rain',
+  65: 'rain',
+  66: 'sleet',
+  67: 'sleet',
+  71: 'snow',
+  73: 'snow',
+  75: 'snow',
+  77: 'snow',
+  80: 'rain',
+  81: 'rain',
+  82: 'rain',
+  85: 'snow',
+  86: 'snow',
+  95: 'thunder',
+  96: 'thunder',
+  99: 'thunder',
 };

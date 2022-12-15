@@ -4,7 +4,7 @@ import SourceButton from '../components/SourceButton';
 
 const mapStateToProps = (state, ownProps) => ({
   selected: ownProps.filter === state.dataSourceFilter,
-  status: state.weatherData[ownProps.source].status
+  status: state.weatherData[ownProps.sourceName].status
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

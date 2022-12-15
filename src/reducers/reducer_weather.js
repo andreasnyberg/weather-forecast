@@ -2,10 +2,10 @@ import {
   API_START,
   API_ERROR_SMHI,
   API_ERROR_OWM,
-  API_ERROR_DS,
+  API_ERROR_OM,
   MASSAGE_DATA_SMHI,
   MASSAGE_DATA_OWM,
-  MASSAGE_DATA_DS,
+  MASSAGE_DATA_OM,
   COMBINE_DATA,
   CLEAR_ALL_DATA,
   SET_DATA_SOURCE_FILTER,
@@ -15,13 +15,13 @@ import {
 } from '../actions/types';
 import massageDataSmhi from '../helpers/massageDataSmhi';
 import massageDataOwm from '../helpers/massageDataOwm';
-import massageDataDs from '../helpers/massageDataDs';
+import massageDataOm from '../helpers/massageDataOm';
 import combineData from '../helpers/combineData';
 
-const { SHOW_ALL } = SourceFilters;
+const { SHOW_OM } = SourceFilters; // TODO ändra till show_all
 const { DONE, PENDING, ERROR } = SourceStatuses;
 
-export function dataSourceFilter(state = SHOW_ALL, action) {
+export function dataSourceFilter(state = SHOW_OM, action) {
   switch (action.type) {
     case SET_DATA_SOURCE_FILTER:
       return action.filter
@@ -39,7 +39,7 @@ const initialState = {
     data: [],
     status: null
   },
-  ds: {
+  om: {
     data: [],
     status: null
   },
@@ -77,11 +77,11 @@ export function weatherData(state = initialState, action) {
           status: DONE
         }
       };
-    case MASSAGE_DATA_DS:
+    case MASSAGE_DATA_OM:
 			return {
         ...state,
-        ds: {
-          data: massageDataDs(action.payload),
+        om: {
+          data: massageDataOm(action.payload),
           status: DONE
         }
       };
@@ -115,11 +115,11 @@ export function weatherData(state = initialState, action) {
           status: ERROR
         }
       };
-    case API_ERROR_DS:
+    case API_ERROR_OM:
 			return {
         ...state,
-        ds: {
-          ...state.ds,
+        om: {
+          ...state.om,
           status: ERROR
         }
       };

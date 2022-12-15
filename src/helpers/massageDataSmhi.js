@@ -1,24 +1,21 @@
-import SunCalc from 'suncalc';
-import { isSameDay, isBefore, isAfter, addHours } from 'date-fns';
+import { isSameDay, isBefore, isAfter } from 'date-fns';
 import { iconsSmhi } from './icons';
 import {
   getAverage,
   getSum,
   isAwakeTime,
-  isCenterOfDayTime,
+  isMiddleHoursOfDay,
   roundAndValidate,
   sevenDaysFromToday,
-  findMostFrequentIcon
+  findMostFrequentIcon,
+  getSunriseSunset
 } from './misc';
 
 const massageDataSmhi = (data) => {
-  const lat = localStorage.getItem('lat') || '59.3293'; // Stockholm as default.
-  const lon = localStorage.getItem('lon') || '18.0686'; // Stockholm as default.
-
   return (
     sevenDaysFromToday.map(currentDate => {
       const todayData = data.timeSeries.filter(item => isSameDay(currentDate, item.validTime));      
-      const { sunrise, sunset } = SunCalc.getTimes(addHours(currentDate, 1), lat, lon);
+      const { sunrise, sunset } = getSunriseSunset(currentDate);
       
       // ********** HOUR DATA **********
       const hours = todayData.map(currentHour => {
@@ -39,10 +36,12 @@ const massageDataSmhi = (data) => {
       });
 
       // ********** ICON **********
-      const icons = hours
-                      .filter(item => isCenterOfDayTime(item.hour))
-                      .map(item => item.icon)
-                      .filter(icon => icon !== 'night');
+      const iconsMiddleHours = hours
+        .filter(item => isMiddleHoursOfDay(item.hour))
+        .map(item => item.icon);
+      
+      const hasOtherThanNightIcons = iconsMiddleHours.some(icon => icon !== 'night');
+      const icons = hasOtherThanNightIcons ? iconsMiddleHours.filter(icon => icon !== 'night') : iconsMiddleHours;
 
       // ********** TEMPERATURE **********
       const temps = todayData

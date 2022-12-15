@@ -7,23 +7,23 @@ const Footer = () => (
     <div className="source-buttons">
       <SourceButtonContainer
         filter={SourceFilters.SHOW_ALL}
-        source="combo"
-        label="Kombo" />
+        sourceName="combo"
+        buttonLabel="Kombo" />
 
       <SourceButtonContainer
         filter={SourceFilters.SHOW_SMHI}
-        source="smhi"
-        label="SMHI" />
+        sourceName="smhi"
+        buttonLabel="SMHI" />
+
+      <SourceButtonContainer
+        filter={SourceFilters.SHOW_OM}
+        sourceName="om"
+        buttonLabel="OM" />
 
       <SourceButtonContainer
         filter={SourceFilters.SHOW_OWM}
-        source="owm"
-        label="OWM" />
-
-      <SourceButtonContainer
-        filter={SourceFilters.SHOW_DS}
-        source="ds"
-        label="DS" />
+        sourceName="owm"
+        buttonLabel="OWM" />
     </div>
   </footer>
 );
