@@ -18,7 +18,7 @@ class Weather extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { smhi, owm, ds, combo } = nextProps.weatherData;
+    const { smhi, owm, om, combo } = nextProps.weatherData;
 
     if (!isDone(combo)) {
 
@@ -26,8 +26,8 @@ class Weather extends Component {
         this.handleTimerStart();
       }
 
-      if ([smhi, owm, ds].every(isDone)) {
-        //this.props.combineData(['smhi', 'owm', 'ds']);
+      if ([smhi, owm, om].every(isDone)) {
+        this.props.combineData(['smhi', 'owm', 'om']);
       }
     }    
   }
@@ -47,14 +47,14 @@ class Weather extends Component {
     const doneSourcesLabels = Object.keys(weatherData).filter(key => weatherData[key].status === SourceStatuses.DONE);
 
     if (!isDone(weatherData.combo) && doneSourcesLabels.length > 1) {
-      //this.props.combineData(doneSourcesLabels);
+      this.props.combineData(doneSourcesLabels);
     }
   }
 
   filterData() {
-    const { SHOW_ALL, SHOW_SMHI, SHOW_OWM, SHOW_DS } = SourceFilters;
+    const { SHOW_ALL, SHOW_SMHI, SHOW_OWM, SHOW_OM } = SourceFilters;
     const { dataSourceFilter } = this.props;
-    const { smhi, owm, ds, combo } = this.props.weatherData;
+    const { smhi, owm, om, combo } = this.props.weatherData;
 
     switch (dataSourceFilter) {
       case SHOW_ALL:
@@ -66,26 +66,20 @@ class Weather extends Component {
       case SHOW_OWM:
         return owm.data;
 
-      case SHOW_DS:
-        return ds.data;
+      case SHOW_OM:
+        return om.data;
 
       default:
         throw new Error('Unknown filter: ' + dataSourceFilter);
     }
   }
 
+  // TODO OM response har "current_weather" - använd det! annars, ta bort från urlen i fetchDataOm.
   renderRightNow(data) {
     // If current time is near 23:59, we might not have any hour data.
     const firstDayWHourData = data.find(day => day.hasOwnProperty('hours'));
     const rightNowData = firstDayWHourData.hours[0];
-
-    if (!rightNowData) {
-      return <div>no rightNowData</div>
-    }
     const { icon, temp, rainfall, windspeed } = rightNowData;
-
-    
-
 
     return (
       <section className="right-now">

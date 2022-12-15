@@ -4,7 +4,7 @@ import {
   getAverage,
   getSum,
   isAwakeTime,
-  isCenterOfDayTime,
+  isMiddleHoursOfDay,
   roundAndValidate,
   isObjectEmpty,
   sevenDaysFromToday,
@@ -34,15 +34,17 @@ const massageDataOwm = (data) => (
     });
 
     // ********** ICON **********
-    const icons = hours
-                    .filter(item => isCenterOfDayTime(item.hour))
-                    .map(item => item.icon)
-                    .filter(icon => icon !== 'night');
+    const iconsMiddleHours = hours
+      .filter(item => isMiddleHoursOfDay(item.hour))
+      .map(item => item.icon)
+
+    const hasOtherThanNightIcons = iconsMiddleHours.some(icon => icon !== 'night');
+    const icons = hasOtherThanNightIcons ? iconsMiddleHours.filter(icon => icon !== 'night') : iconsMiddleHours;
 
     // ********** TEMPERATURE **********
     const temps = todayData
-                    .filter(item => isAwakeTime(new Date(item.dt * 1000)))
-                    .map(item => item.main.temp);
+      .filter(item => isAwakeTime(new Date(item.dt * 1000)))
+      .map(item => item.main.temp);
     const tempMin = Math.min(...temps);
     const tempMax = Math.max(...temps);
 

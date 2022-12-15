@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  fetchWeatherSmhi,
-  fetchWeatherOwm,
-  fetchWeatherDs,
+  fetchDataSmhi,
+  fetchDataOwm,
+  fetchDataOm,
   clearOldData,
 } from '../actions';
 import App from '../components/App';
@@ -14,9 +14,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-    fetchWeatherSmhi,
-    fetchWeatherOwm,
-    fetchWeatherDs,
+    fetchDataSmhi,
+    fetchDataOwm,
+    fetchDataOm,
     clearOldData,
   }, dispatch);
 }

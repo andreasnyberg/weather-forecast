@@ -18,18 +18,18 @@ class App extends Component {
 
   fetchData() {
     const {
-      fetchWeatherSmhi,
-      fetchWeatherOwm,
-      fetchWeatherDs,
+      fetchDataSmhi,
+      fetchDataOwm,
+      fetchDataOm,
       clearOldData
     } = this.props;
     const lat = localStorage.getItem('lat') || '59.3293'; // Stockholm as default.
     const lon = localStorage.getItem('lon') || '18.0686'; // Stockholm as default.
     
     clearOldData();
-    fetchWeatherSmhi(lat, lon);
-    fetchWeatherOwm(lat, lon);
-    fetchWeatherDs(lat, lon);
+    fetchDataSmhi(lat, lon);
+    fetchDataOwm(lat, lon);
+    fetchDataOm(lat, lon);
   }
 
   handleGetLocation() {
