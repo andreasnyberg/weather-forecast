@@ -4,16 +4,13 @@ import {
   getAverage,
   getSum,
   isAwakeTime,
-  isMiddleHoursOfDay,
   roundAndValidate,
   sixDaysFromToday,
   findMostFrequentIcon,
+  getAppropriateIcons,
   getSunriseSunset } from './misc';
 
 const massageDataOm = (data) => {
-  console.log(data);
-  console.log(data.hourly.temperature_2m);
-
   return (
     sixDaysFromToday.map(currentDate => {
       const { sunrise, sunset } = getSunriseSunset(currentDate);
@@ -40,12 +37,7 @@ const massageDataOm = (data) => {
       });
 
       // ********** ICON **********
-      const iconsMiddleHours = hours
-        .filter(item => isMiddleHoursOfDay(item.hour))
-        .map(item => item.icon);
-      
-      const hasOtherThanNightIcons = iconsMiddleHours.some(icon => icon !== 'night');
-      const icons = hasOtherThanNightIcons ? iconsMiddleHours.filter(icon => icon !== 'night') : iconsMiddleHours;
+      const icons = getAppropriateIcons(hours);
 
       // ********** TEMPERATURE **********
       const temps = data.hourly.temperature_2m

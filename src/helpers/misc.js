@@ -100,6 +100,15 @@ export const findMostFrequentIcon = (array) => {
   return mostFrequent;
 }
 
+export const getAppropriateIcons = (hours) => {
+  const iconsMiddleHours = hours
+    .filter(item => isMiddleHoursOfDay(item.hour))
+    .map(item => item.icon);
+
+  const hasAnyOtherThanNightIcon = iconsMiddleHours.some(icon => icon !== 'night');
+  return hasAnyOtherThanNightIcon ? iconsMiddleHours.filter(icon => icon !== 'night') : ['night'];
+}
+
 export const isDone = item => item.status === SourceStatuses.DONE;
 
 export const getSunriseSunset = (date) => {

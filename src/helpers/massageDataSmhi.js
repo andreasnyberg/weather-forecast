@@ -4,10 +4,10 @@ import {
   getAverage,
   getSum,
   isAwakeTime,
-  isMiddleHoursOfDay,
   roundAndValidate,
   sixDaysFromToday,
   findMostFrequentIcon,
+  getAppropriateIcons,
   getSunriseSunset
 } from './misc';
 
@@ -36,12 +36,7 @@ const massageDataSmhi = (data) => {
       });
 
       // ********** ICON **********
-      const iconsMiddleHours = hours
-        .filter(item => isMiddleHoursOfDay(item.hour))
-        .map(item => item.icon);
-      
-      const hasOtherThanNightIcons = iconsMiddleHours.some(icon => icon !== 'night');
-      const icons = hasOtherThanNightIcons ? iconsMiddleHours.filter(icon => icon !== 'night') : iconsMiddleHours;
+      const icons = getAppropriateIcons(hours);
 
       // ********** TEMPERATURE **********
       const temps = todayData
