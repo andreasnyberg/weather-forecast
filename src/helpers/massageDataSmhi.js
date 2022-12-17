@@ -6,14 +6,14 @@ import {
   isAwakeTime,
   isMiddleHoursOfDay,
   roundAndValidate,
-  sevenDaysFromToday,
+  sixDaysFromToday,
   findMostFrequentIcon,
   getSunriseSunset
 } from './misc';
 
 const massageDataSmhi = (data) => {
   return (
-    sevenDaysFromToday.map(currentDate => {
+    sixDaysFromToday.map(currentDate => {
       const todayData = data.timeSeries.filter(item => isSameDay(currentDate, item.validTime));      
       const { sunrise, sunset } = getSunriseSunset(currentDate);
       

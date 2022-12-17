@@ -40,7 +40,6 @@ export const isAwakeTime = (date) => (
   getHours(date) >= 7 && getHours(date) <= 23
 );
 
-// TODO döp om till isMiddleHoursOfDay
 export const isMiddleHoursOfDay = (date) => (
   getHours(date) >= 10 && getHours(date) <= 19
 );
@@ -74,8 +73,7 @@ export const getRoundedRainfallAmount = (code) => {
 }
 
 const today = new Date();
-// TODO döp om till sixdaysfrom...
-export const sevenDaysFromToday = eachDay(today, addDays(today, 6));
+export const sixDaysFromToday = eachDay(today, addDays(today, 6));
 
 export const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
 

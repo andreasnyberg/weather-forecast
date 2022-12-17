@@ -18,12 +18,12 @@ const Footer = () => (
       <SourceButtonContainer
         filter={SourceFilters.SHOW_OM}
         sourceName="om"
-        buttonLabel="OM" />
+        buttonLabel="Open-Meteo" />
 
       <SourceButtonContainer
         filter={SourceFilters.SHOW_OWM}
         sourceName="owm"
-        buttonLabel="OWM" />
+        buttonLabel="Open Weather Map" />
     </div>
   </footer>
 );

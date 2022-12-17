@@ -268,7 +268,7 @@ body {
 .button {
   background-color: #ddd;
   border: 0;
-  color: #bbb;
+  color: #999;
   cursor: pointer;
   outline: 0;
   user-select: none;
@@ -281,7 +281,19 @@ body {
 .button:hover,
 .button.selected {
   background-color: #ccc;
-  color: #888;
+  color: #666;
+}
+
+.button:hover {
+  color: #333;
+}
+
+.button:hover span {
+  opacity: 0.7;
+}
+
+.button.selected {
+  text-decoration: underline;
 }
 
 .button--round {
@@ -291,16 +303,12 @@ body {
   height: 7rem;
 }
 
-.button--round:hover span {
-  opacity: 0.5;
-}
-
 .button--round span {
   background-repeat: no-repeat;
   background-position: center;
   display: block;
   height: 100%;
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
 .button--location span {
@@ -318,15 +326,17 @@ body {
 
 .button--source {
   border-radius: 4px;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 800;
   flex-grow: 1;
+  max-width: 20%;
   height: 5rem;
   position: relative;
 }
 
 .button--combo {
   font-size: 2rem;
+  max-width: 100%;
 }
 
 
@@ -353,10 +363,10 @@ body {
   content: '';
   border-radius: 1000px;
   position: absolute;
-  width: 12px;
-  height: 12px;
-  top: 10px;
-  right: 10px;
+  width: 9px;
+  height: 9px;
+  top: 4px;
+  right: 4px;
 }
 
 .button--source.done:before,

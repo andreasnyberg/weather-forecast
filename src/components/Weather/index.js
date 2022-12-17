@@ -74,7 +74,7 @@ class Weather extends Component {
     }
   }
 
-  // TODO OM response har "current_weather" - använd det! annars, ta bort från urlen i fetchDataOm.
+  // TODO OpenMeteo response har "current_weather" - använd det! annars, ta bort från urlen i fetchDataOm.
   renderRightNow(data) {
     // If current time is near 23:59, we might not have any hour data.
     const firstDayWHourData = data.find(day => day.hasOwnProperty('hours'));

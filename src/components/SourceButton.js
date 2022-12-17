@@ -6,7 +6,6 @@ const SourceButton = ({ selected, sourceName, buttonLabel, status, onClick }) =>
   const classNameStatus = status ? status.toLowerCase() : "";
   const classNames = `${className} ${classNameSelected} ${classNameStatus}`;
   const disabled = status === 'ERROR' || selected;
-  //TODO döp om OM/OWM till Open-Meteo etc
 
   return (
     <button

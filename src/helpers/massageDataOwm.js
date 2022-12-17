@@ -7,12 +7,12 @@ import {
   isMiddleHoursOfDay,
   roundAndValidate,
   isObjectEmpty,
-  sevenDaysFromToday,
+  sixDaysFromToday,
   findMostFrequentIcon
 } from './misc';
 
 const massageDataOwm = (data) => (
-  sevenDaysFromToday.map(currentDate => {
+  sixDaysFromToday.map(currentDate => {
     const todayData = data.list.filter(item => isSameDay(currentDate, new Date(item.dt * 1000)));
 
     if (!todayData.length) { return { date: currentDate }}

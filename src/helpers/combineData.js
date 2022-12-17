@@ -1,4 +1,4 @@
-import { getAverage, getAverageNoRound, sevenDaysFromToday, range, findMostFrequentIcon } from './misc';
+import { getAverage, getAverageNoRound, sixDaysFromToday, range, findMostFrequentIcon } from './misc';
 import { isSameDay, getHours } from 'date-fns';
 
 const combineData = (data) => {
@@ -11,7 +11,7 @@ const combineData = (data) => {
 
   // console.log(data);
 
-  return sevenDaysFromToday.map(day => {
+  return sixDaysFromToday.map(day => {
     const allHoursWithData = [];
     const icons = data
       .map(src => src.find(x => isSameDay(x.date, day)).icon)

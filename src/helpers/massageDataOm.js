@@ -6,7 +6,7 @@ import {
   isAwakeTime,
   isMiddleHoursOfDay,
   roundAndValidate,
-  sevenDaysFromToday,
+  sixDaysFromToday,
   findMostFrequentIcon,
   getSunriseSunset } from './misc';
 
@@ -15,7 +15,7 @@ const massageDataOm = (data) => {
   console.log(data.hourly.temperature_2m);
 
   return (
-    sevenDaysFromToday.map(currentDate => {
+    sixDaysFromToday.map(currentDate => {
       const { sunrise, sunset } = getSunriseSunset(currentDate);
         
       // ********** HOUR DATA **********
