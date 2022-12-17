@@ -153,7 +153,10 @@ body {
   opacity: 0.4;
 }
 
-.row--hour .hour { padding-left: 0.8rem; }
+.row--hour .hour {
+  font-size: 1.4rem;
+  padding-left: 0.8rem;
+}
 .row--hour .item--rainfall-and-windspeed { padding-right: 0.8rem; }
 
 /******************** ITEMS ********************/
